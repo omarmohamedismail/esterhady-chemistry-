@@ -1,523 +1,603 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Chemistry 2026 — Solved Questions</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Chem 2026">
+<meta name="theme-color" content="#04080f">
+<title>Chemistry 2026 — Solutions Guide</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ─── RESET & TOKENS ─── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#04080f; --bg2:#0a1020; --bg3:#101828;
+  --card:rgba(255,255,255,.038); --card-h:rgba(255,255,255,.07);
+  --bdr:rgba(255,255,255,.09); --bdr-b:rgba(255,255,255,.18);
+  --text:#dde4f0; --text2:#94a3b8; --text3:#5a7090;
+  --gold:#e8a020; --gold-d:rgba(232,160,32,.15);
+  --teal:#0fd4c0; --teal-d:rgba(15,212,192,.12);
+  --green:#22c55e; --green-d:rgba(34,197,94,.12);
+  --red-d:rgba(239,68,68,.12);
+  --sw:290px; --hh:60px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --mono:"SF Mono","Fira Code","Cascadia Code",Consolas,monospace;
+  --serif:Georgia,"Times New Roman",serif;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-top:env(safe-area-inset-top,0px);
 }
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--bdr) transparent}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:4px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:#071018;
-    color:#fff;
-    min-height:100vh;
+/* ─── HEADER ─── */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:calc(var(--hh) + var(--safe-top));
+  padding-top:var(--safe-top);
+  background:rgba(4,8,15,.93);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--bdr);
+  display:flex;align-items:center;gap:12px;
+  padding-left:16px;padding-right:16px;
 }
-
-/* HEADER */
-
-header{
-    background:#0f172a;
-    border-bottom:1px solid #1e293b;
-    padding:20px;
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.header-container{
-    max-width:1300px;
-    margin:auto;
-}
-
-header h1{
-    color:#f59e0b;
-    font-size:32px;
-    margin-bottom:15px;
-}
-
-.search-box{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:#111827;
-    color:white;
-    font-size:15px;
-    outline:none;
-}
-
-.search-box::placeholder{
-    color:#94a3b8;
-}
-
-/* MAIN */
-
-.container{
-    max-width:1300px;
-    margin:auto;
-    padding:30px 20px;
-}
-
-/* MODEL */
-
-.model{
-    margin-bottom:45px;
-    border:1px solid #1e293b;
-    border-radius:16px;
-    overflow:hidden;
-    background:#0b1220;
-}
-
-.model-header{
-    background:linear-gradient(90deg,#1e293b,#0f172a);
-    padding:22px;
-    border-bottom:1px solid #1e293b;
-}
-
-.model-header h2{
-    color:#38bdf8;
-    font-size:26px;
-}
-
-/* QUESTION */
-
-.question{
-    padding:25px;
-    border-bottom:1px solid #1e293b;
-}
-
-.question:last-child{
-    border-bottom:none;
-}
-
-.question-number{
-    display:inline-block;
-    background:#f59e0b;
-    color:black;
-    padding:6px 14px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:15px;
-}
-
-.question-text{
-    font-size:18px;
-    line-height:1.8;
-    margin-bottom:20px;
-    color:#f8fafc;
-}
-
-/* OPTIONS */
-
-.options{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.option{
-    background:#111827;
-    border:1px solid #1e293b;
-    padding:14px;
-    border-radius:10px;
-    color:#cbd5e1;
-    transition:0.3s;
-}
-
-.option.correct{
-    background:#052e16;
-    border:1px solid #22c55e;
-    color:#4ade80;
-    font-weight:600;
-}
-
-/* ANSWER */
-
-.answer-box{
-    background:#052e16;
-    border:1px solid #22c55e;
-    border-radius:12px;
-    padding:18px;
-    margin-top:20px;
-}
-
-.answer-title{
-    color:#4ade80;
-    font-size:18px;
-    margin-bottom:10px;
-    font-weight:700;
-}
-
-.answer-text{
-    color:#dcfce7;
-    line-height:1.8;
-}
-
-/* EXPLANATION */
-
-.explanation{
-    margin-top:18px;
-    background:#111827;
-    border-radius:12px;
-    padding:18px;
-    border:1px solid #1e293b;
-}
-
-.explanation h4{
-    color:#38bdf8;
-    margin-bottom:12px;
-}
-
-.explanation p{
-    color:#cbd5e1;
-    line-height:1.9;
-}
-
-/* RESPONSIVE */
-
+.hdr-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.hdr-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),#f97316);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 0 16px rgba(232,160,32,.35);flex-shrink:0}
+.hdr-text{display:flex;flex-direction:column}
+.hdr-title{font-family:var(--serif);font-size:15px;font-weight:700;letter-spacing:-.2px}
+.hdr-sub{font-size:10px;color:var(--text3);letter-spacing:.8px;text-transform:uppercase}
+.hdr-search{flex:1;position:relative;max-width:400px}
+.hdr-search input{width:100%;padding:9px 14px 9px 38px;background:var(--card);border:1px solid var(--bdr);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.hdr-search input:focus{border-color:var(--bdr-b)}
+.hdr-search input::placeholder{color:var(--text3)}
+.hdr-search .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--text3);pointer-events:none}
+.hdr-pill{background:var(--card);border:1px solid var(--bdr);border-radius:20px;padding:4px 12px;font-size:11.5px;color:var(--text2);white-space:nowrap;flex-shrink:0}
+.hdr-pill strong{color:var(--gold)}
+.menu-btn{display:none;background:var(--card);border:1px solid var(--bdr);border-radius:9px;width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:18px}
 @media(max-width:768px){
-
-    .options{
-        grid-template-columns:1fr;
-    }
-
-    header h1{
-        font-size:24px;
-    }
-
-    .question-text{
-        font-size:16px;
-    }
+  .menu-btn{display:flex}
+  .hdr-sub{display:none}
+  .hdr-solved{display:none}
 }
 
+/* ─── LAYOUT ─── */
+.layout{display:flex;margin-top:calc(var(--hh) + var(--safe-top))}
+
+/* ─── SIDEBAR / DRAWER ─── */
+.sidebar{
+  position:fixed;
+  top:calc(var(--hh) + var(--safe-top));
+  left:0;bottom:0;
+  width:var(--sw);
+  background:var(--bg2);
+  border-right:1px solid var(--bdr);
+  overflow-y:auto;z-index:150;
+  padding:16px 0 calc(16px + var(--safe-bottom));
+  transition:transform .25s cubic-bezier(.4,0,.2,1);
+}
+.sidebar-backdrop{
+  display:none;position:fixed;inset:0;z-index:140;
+  background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+  opacity:0;transition:opacity .25s;
+}
+@media(max-width:768px){
+  .sidebar{
+    top:0;width:min(var(--sw),88vw);
+    padding-top:calc(var(--hh) + var(--safe-top) + 12px);
+    transform:translateX(-100%);
+    box-shadow:4px 0 40px rgba(0,0,0,.6);
+  }
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-backdrop.open{display:block;opacity:1}
+}
+.sb-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:10px 18px 4px}
+.sb-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:10px;margin:2px 10px;
+  cursor:pointer;text-decoration:none;color:var(--text2);
+  font-size:13.5px;border-left:3px solid transparent;
+  transition:background .15s,color .15s;
+}
+.sb-item:hover{background:var(--card);color:var(--text)}
+.sb-item.active{background:var(--card);color:var(--text);border-left-color:var(--c)}
+.sb-icon{font-size:17px;width:26px;text-align:center;flex-shrink:0}
+.sb-info{flex:1;min-width:0}
+.sb-name{font-weight:500;line-height:1.2;font-size:13.5px}
+.sb-count{font-size:11px;color:var(--text3);margin-top:1px}
+.sb-badge{background:rgba(255,255,255,.08);border-radius:5px;padding:2px 7px;font-size:11px;font-weight:700;font-family:var(--mono);flex-shrink:0}
+.sb-divider{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:8px 14px}
+
+/* ─── MAIN ─── */
+.main{
+  margin-left:var(--sw);flex:1;
+  padding:28px 36px;
+  min-width:0;
+  padding-bottom:calc(32px + var(--safe-bottom));
+}
+@media(max-width:768px){
+  .main{margin-left:0;padding:16px 14px;padding-bottom:calc(80px + var(--safe-bottom))}
+}
+
+/* ─── HERO ─── */
+.hero{
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  border:1px solid var(--bdr);border-radius:16px;
+  padding:36px 40px;margin-bottom:32px;
+  position:relative;overflow:hidden;
+}
+.hero::before{content:'⚗️';position:absolute;right:-10px;top:-10px;font-size:120px;opacity:.04;transform:rotate(20deg);pointer-events:none}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),#f97316,#ec4899,var(--teal))}
+.hero h1{font-family:var(--serif);font-size:clamp(20px,5vw,28px);font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.3px}
+.hero p{color:var(--text2);font-size:14px;max-width:560px;line-height:1.6;margin-bottom:24px}
+.models-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.mc{
+  background:var(--card);border:1px solid var(--bdr);border-radius:10px;
+  padding:14px;cursor:pointer;transition:all .18s;
+  position:relative;overflow:hidden;text-align:left;
+  border:none;color:inherit;
+}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--c)}
+.mc:hover,.mc:focus{background:var(--card-h);transform:translateY(-2px);outline:none;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.mc-icon{font-size:22px;margin-bottom:6px;display:block}
+.mc-lbl{font-size:11px;color:var(--text3);margin-bottom:3px}
+.mc-tag{font-family:var(--serif);font-size:14px;font-weight:700;margin-bottom:6px}
+.mc-stats{font-size:10.5px;color:var(--text3)}
+.mc-stats span{color:var(--c)}
+@media(max-width:480px){
+  .hero{padding:24px 20px}
+  .models-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ─── MODEL SECTION ─── */
+.msec{margin-bottom:48px}
+.msec-hdr{
+  display:flex;align-items:center;gap:14px;padding:18px 22px;
+  background:linear-gradient(135deg,rgba(255,255,255,.03),transparent);
+  border:1px solid var(--bdr);border-radius:12px 12px 0 0;border-bottom:none;
+  position:relative;overflow:hidden;
+}
+.msec-hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--c)}
+.msec-icon{font-size:26px;flex-shrink:0}
+.msec-titles{flex:1;min-width:0}
+.msec-title{font-family:var(--serif);font-size:clamp(16px,4vw,20px);font-weight:700;color:var(--text)}
+.msec-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.msec-badges{display:flex;gap:6px;flex-shrink:0}
+.bdg{padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.bdg-m{background:rgba(232,160,32,.12);color:var(--gold);border:1px solid rgba(232,160,32,.2)}
+.bdg-e{background:var(--teal-d);color:var(--teal);border:1px solid rgba(15,212,192,.2)}
+@media(max-width:480px){
+  .msec-hdr{flex-wrap:wrap;gap:10px;padding:14px 16px}
+  .msec-badges{order:3;width:100%}
+}
+
+/* ─── QUESTION LIST ─── */
+.qlist{border:1px solid var(--bdr);border-top:none;border-radius:0 0 12px 12px;overflow:hidden}
+.qitem{border-bottom:1px solid var(--bdr)}
+.qitem:last-child{border-bottom:none}
+.qitem.essay{background:linear-gradient(135deg,rgba(15,212,192,.025),transparent)}
+.qhdr{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 18px;cursor:pointer;
+  transition:background .15s;
+  -webkit-user-select:none;user-select:none;
+  min-height:44px;
+}
+.qhdr:hover{background:var(--card)}
+.qhdr:active{background:var(--card-h)}
+.qnum{
+  flex-shrink:0;width:32px;height:32px;
+  background:var(--card);border:1px solid var(--bdr);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text2);
+}
+.qnum.e{color:var(--teal);border-color:rgba(15,212,192,.25);background:rgba(15,212,192,.06)}
+.qbody{flex:1;min-width:0}
+.qtag{display:inline-block;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;padding:2px 7px;border-radius:4px;margin-bottom:5px;font-weight:700}
+.qtag-m{background:var(--gold-d);color:var(--gold)}
+.qtag-e{background:var(--teal-d);color:var(--teal)}
+.qtext{font-size:13.5px;line-height:1.65;color:var(--text)}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:9px}
+.qopt{display:flex;align-items:flex-start;gap:7px;padding:6px 9px;background:var(--card);border:1px solid var(--bdr);border-radius:6px;font-size:12px;line-height:1.4;color:var(--text2)}
+.opt-l{flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--text3);background:var(--bg3);border-radius:3px;width:17px;height:17px;display:flex;align-items:center;justify-content:center}
+.qactions{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+.solve-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;
+  background:var(--bc,var(--gold-d));
+  border:1px solid var(--bb,rgba(232,160,32,.25));
+  color:var(--bt,var(--gold));
+  border-radius:9px;
+  font-family:var(--sans);font-size:12.5px;font-weight:600;
+  cursor:pointer;transition:all .18s;letter-spacing:.2px;
+  -webkit-appearance:none;
+  min-height:36px;
+}
+.solve-btn:hover:not(:disabled){filter:brightness(1.15);transform:translateY(-1px)}
+.solve-btn:active:not(:disabled){transform:scale(.97)}
+.solve-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.expand-btn{
+  background:none;border:none;color:var(--text3);
+  cursor:pointer;padding:8px;border-radius:7px;
+  transition:all .15s;font-size:14px;
+  margin-left:auto;flex-shrink:0;align-self:flex-start;
+  min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;
+}
+.expand-btn:hover{background:var(--card);color:var(--text)}
+@media(max-width:480px){
+  .qopts{grid-template-columns:1fr}
+  .qhdr{padding:12px 14px}
+  .qtext{font-size:13px}
+}
+
+/* ─── SOLUTION PANEL ─── */
+.sol-panel{display:none;border-top:1px solid var(--bdr);background:linear-gradient(135deg,rgba(4,8,15,.95),rgba(10,16,32,.95))}
+.sol-panel.open{display:block}
+.sol-loading{display:flex;align-items:center;justify-content:center;gap:12px;padding:28px;color:var(--text2);font-size:14px}
+.spin{width:20px;height:20px;border:2px solid var(--bdr);border-top-color:var(--gold);border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sol-body{padding:20px 20px 20px 62px}
+.sol-raw{font-size:13.5px;line-height:1.85;color:var(--text2);white-space:pre-wrap;word-break:break-word}
+.sol-raw strong{color:var(--text)}
+.sol-raw .ans{background:var(--green-d);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--green);font-weight:600;margin:8px 0;display:block}
+.sol-raw .wrong{background:var(--red-d);border-radius:6px;padding:7px 11px;font-size:12.5px;color:#f87171;margin:4px 0;display:block}
+.sol-err{padding:18px 20px;color:#f87171;font-size:13px}
+.sol-err button{margin-top:8px;padding:7px 14px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#f87171;border-radius:7px;cursor:pointer;font-size:12px;font-family:var(--sans)}
+.chem{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.07);border-radius:4px;padding:1px 5px;color:var(--teal)}
+@media(max-width:480px){
+  .sol-body{padding:16px 14px}
+}
+
+/* ─── BOTTOM NAV (mobile) ─── */
+.bnav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:190;
+  background:rgba(4,8,15,.96);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--bdr);
+  padding:8px 16px calc(8px + var(--safe-bottom));
+  gap:4px;
+}
+@media(max-width:768px){.bnav{display:flex}}
+.bnav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:8px 4px;border-radius:10px;cursor:pointer;
+  background:none;border:none;color:var(--text3);
+  font-size:10px;font-family:var(--sans);transition:all .15s;
+  min-height:44px;
+}
+.bnav-btn.active{color:var(--gold);background:var(--gold-d)}
+.bnav-btn:hover{color:var(--text);background:var(--card)}
+.bnav-ico{font-size:20px}
+
+/* ─── SEARCH HIGHLIGHT ─── */
+.no-res{text-align:center;padding:60px 20px;color:var(--text3);font-size:14px}
+.offline-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--green-d);border:1px solid rgba(34,197,94,.2);
+  color:var(--green);border-radius:20px;padding:3px 10px;
+  font-size:11px;font-weight:600;margin-top:8px;
+}
 </style>
 </head>
-
 <body>
 
-<header>
-
-    <div class="header-container">
-
-        <h1>⚗ Chemistry 2026 — Complete Solved Questions</h1>
-
-        <input
-            type="text"
-            class="search-box"
-            id="searchInput"
-            placeholder="Search questions..."
-            onkeyup="searchQuestions()"
-        >
-
+<!-- HEADER -->
+<header class="hdr">
+  <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+  <div class="hdr-logo">
+    <div class="hdr-icon">⚗️</div>
+    <div class="hdr-text">
+      <div class="hdr-title">Chemistry 2026</div>
+      <div class="hdr-sub">Solutions Guide</div>
     </div>
-
+  </div>
+  <div class="hdr-search">
+    <span class="si">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search questions…" oninput="handleSearch(this.value)" autocomplete="off" autocorrect="off" spellcheck="false">
+  </div>
+  <div class="hdr-pill hdr-solved" id="solvedPill"><strong>0</strong> solved</div>
 </header>
 
-<div class="container">
-
-    <!-- MODEL 1 -->
-
-    <div class="model">
-
-        <div class="model-header">
-            <h2>📘 Organic Chemistry</h2>
-        </div>
-
-        <!-- QUESTION -->
-
-        <div class="question searchable">
-
-            <div class="question-number">
-                Question 1
-            </div>
-
-            <div class="question-text">
-                What is the number of isomers having molecular formula C4H10 ?
-            </div>
-
-            <div class="options">
-
-                <div class="option">
-                    A) 1
-                </div>
-
-                <div class="option correct">
-                    B) 2
-                </div>
-
-                <div class="option">
-                    C) 3
-                </div>
-
-                <div class="option">
-                    D) 4
-                </div>
-
-            </div>
-
-            <div class="answer-box">
-
-                <div class="answer-title">
-                    ✅ Correct Answer: B) 2
-                </div>
-
-                <div class="answer-text">
-                    C4H10 is butane. It has two structural isomers:
-                    normal butane and isobutane.
-                </div>
-
-            </div>
-
-            <div class="explanation">
-
-                <h4>📖 Explanation</h4>
-
-                <p>
-                    Isomers are compounds that have the same molecular formula
-                    but different structural formulas.
-
-                    Butane (C4H10) has:
-                    <br><br>
-
-                    1. n-butane → straight chain
-                    <br>
-                    2. isobutane → branched chain
-
-                    <br><br>
-
-                    Therefore, the total number of isomers is 2.
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- QUESTION -->
-
-        <div class="question searchable">
-
-            <div class="question-number">
-                Question 2
-            </div>
-
-            <div class="question-text">
-                According to Wöhler theory, organic compounds can be prepared in:
-            </div>
-
-            <div class="options">
-
-                <div class="option">
-                    A) Living cells only
-                </div>
-
-                <div class="option correct">
-                    B) Laboratories and living cells
-                </div>
-
-                <div class="option">
-                    C) Houses only
-                </div>
-
-                <div class="option">
-                    D) Plants only
-                </div>
-
-            </div>
-
-            <div class="answer-box">
-
-                <div class="answer-title">
-                    ✅ Correct Answer: B) Laboratories and living cells
-                </div>
-
-                <div class="answer-text">
-                    Wöhler prepared urea in the laboratory proving that organic
-                    compounds can be synthesized artificially.
-                </div>
-
-            </div>
-
-            <div class="explanation">
-
-                <h4>📖 Explanation</h4>
-
-                <p>
-                    Friedrich Wöhler synthesized urea from ammonium cyanate.
-                    This destroyed the old theory stating that organic compounds
-                    can only be produced inside living organisms.
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- QUESTION -->
-
-        <div class="question searchable">
-
-            <div class="question-number">
-                Question 3
-            </div>
-
-            <div class="question-text">
-                Which type of bond joins atoms in hydrocarbon molecules?
-            </div>
-
-            <div class="options">
-
-                <div class="option">
-                    A) Ionic
-                </div>
-
-                <div class="option correct">
-                    B) Covalent
-                </div>
-
-                <div class="option">
-                    C) Metallic
-                </div>
-
-                <div class="option">
-                    D) Hydrogen
-                </div>
-
-            </div>
-
-            <div class="answer-box">
-
-                <div class="answer-title">
-                    ✅ Correct Answer: B) Covalent
-                </div>
-
-                <div class="answer-text">
-                    Hydrocarbons contain covalent bonds between carbon and hydrogen atoms.
-                </div>
-
-            </div>
-
-            <div class="explanation">
-
-                <h4>📖 Explanation</h4>
-
-                <p>
-                    Carbon atoms share electrons with hydrogen atoms.
-                    Shared electron pairs form covalent bonds.
-                    Therefore hydrocarbons are covalent compounds.
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- QUESTION -->
-
-        <div class="question searchable">
-
-            <div class="question-number">
-                Question 4
-            </div>
-
-            <div class="question-text">
-                Heating potassium cyanate with ammonium chloride produces:
-            </div>
-
-            <div class="options">
-
-                <div class="option">
-                    A) Methane amide
-                </div>
-
-                <div class="option">
-                    B) Ethylamine
-                </div>
-
-                <div class="option correct">
-                    C) Urea
-                </div>
-
-                <div class="option">
-                    D) Acetamide
-                </div>
-
-            </div>
-
-            <div class="answer-box">
-
-                <div class="answer-title">
-                    ✅ Correct Answer: C) Urea
-                </div>
-
-                <div class="answer-text">
-                    The reaction forms ammonium cyanate first which rearranges into urea.
-                </div>
-
-            </div>
-
-            <div class="explanation">
-
-                <h4>📖 Explanation</h4>
-
-                <p>
-                    Potassium cyanate reacts with ammonium chloride forming
-                    ammonium cyanate.
-
-                    <br><br>
-
-                    NH4OCN → CO(NH2)2
-
-                    <br><br>
-
-                    This is the famous Wöhler synthesis reaction.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
+<!-- SIDEBAR BACKDROP -->
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sb-label">Navigation</div>
+  <a href="#index" class="sb-item" onclick="closeSidebarMobile()" style="--c:var(--gold)">
+    <span class="sb-icon">🏠</span>
+    <div class="sb-info"><div class="sb-name">Home</div><div class="sb-count">All models</div></div>
+  </a>
+  <div class="sb-divider"></div>
+  <div id="sbModels"></div>
+  <div style="padding:16px 14px 0">
+    <div class="offline-badge">✅ Works offline</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="layout">
+  <main class="main" id="main"></main>
 </div>
 
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <button class="bnav-btn active" id="bnav-home" onclick="scrollToHome()"><span class="bnav-ico">🏠</span>Home</button>
+  <button class="bnav-btn" id="bnav-search" onclick="focusSearch()"><span class="bnav-ico">🔍</span>Search</button>
+  <button class="bnav-btn" id="bnav-menu" onclick="toggleSidebar()"><span class="bnav-ico">☰</span>Models</button>
+  <button class="bnav-btn" id="bnav-solved" onclick="scrollToTop()"><span class="bnav-ico">💡</span><span id="bnav-solved-txt">0 solved</span></button>
+</nav>
+
 <script>
+/* ─── DATA ─── */
+const EXAM_DATA = [{"id": "model1", "name": "First Guiding Model (Chemistry 2026)", "tag": "1", "icon": "⚗️", "qs": [{"n": 2, "t": "Which of the following expresses the electronic distribution of a non-transition element ion?", "ty": "mcq", "o": ["X[3+] : [Ne]3s^2 ,3p^6", "Y[2+] : [Ar] 3d^6", "Z[2+] : [Ne] 3s^2 , 3p^6", "W[3+] : [Kr] 4d^7"]}, {"n": 3, "t": "Four test tubes X, Y, Z, and W, each contain a salt solution as shown in the following table: W Z Y X V(NO3)5 Ti(NO3)3 Fe(NO3)3 Mn(NO3)2 - Which of these tubes should be covered in order to not be change the composition of the solution inside it? (a) X (b) Y (C) Z (d) W", "ty": "mcq"}, {"n": 4, "t": "Two consecutive transition elements (X) and (Y), from the first transition series contain the same number of electrons in the (3d) subshell. -Which of the following is true?", "ty": "mcq", "o": ["The effective nuclear charge of element (X) is greater than the effective nuclear Charge of element (Y)", "The radius of element (X) is smaller than the radius of element (Y)", "The radius of element (X) is equal to the radius of element (Y)", "The repulsion between the (3d) electrons of element (X) is less than the repulsion Between the (3d) electrons of element (Y) 5- Which of the following describes the change that occurs to siderite ore when Heated in air?"]}, {"n": 7, "t": "Which of the following reactions produces a precipitate?", "ty": "mcq", "o": ["Hydrogen sulphide gas with lead (II) acetate solution", "Sodium thiosulphate solution with brown iodine solution", "Sulphur dioxide gas with acidified potassium dichromate solution", "Sodium nitrite solution with acidified potassium permanganate solution"]}, {"n": 8, "t": "When hot concentrated sulphuric acid reacts with salt (X), a gas that difficult to be oxidized by acid is released, and when the same acid reacts with salt (Y), a gas that is partially oxidized is released. Salts (X) and (Y) are: Y<br>X --------------- Sodium iodide<br>Sodium chloride<br>A Sodium iodide<br>Sodium bromide<br>B Sodium carbonate<br>Sodium nitrate<br>C Sodium sulphate<br>Sodium chloride<br>d 9- When barium chloride solution is added to salt solution (X), a white precipitate forms that dissolves in dilute acids, and when lead II acetate solution is added to salt solution (Y), a white precipitate forms. - Which of the following expresses the anions of salts (X) and (Y)?- Which of the following expresses the anions of salts (X) and (Y)? Anion of salt (Y)<br>Anion of salt (X)<br>Sulphate<br>Phosphate<br>A<br>Sulphide<br>Phosphate<br>B<br>Phosphate<br>Sulphate<br>C<br>Sulphate<br>Chloride<br>d<br>", "ty": "mcq"}, {"n": 10, "t": "From the following diagram: Diluted sulphuric Sodium carbonate White ppt. X[2+] White ppt. acid solution ——__   _ -Which of the following represents cation (X[2+] ):", "ty": "mcq", "o": ["Ca[2+ ]", "Cu[2+ ]", "Mg[2+ ]", "Fe[2+ ]"]}, {"n": 11, "t": "From the following graphs: <br> <br> (Y) (X) Which of the following statements is correct?", "ty": "mcq", "o": ["Graph(X): Kc=1 , the backward reaction is the predominant", "Graph(Y): Kc=1 , the forward reaction is the predominant", "Graph(X): Kc>1 , the forward reaction is the predominant", "Graph(Y): Kc>1 , the backward reaction is the predominant"]}, {"n": 12, "t": "In the following equilibrium reaction: Ca(OH)2(s) ⇌ CaO(s) + H2O (v) Which of the following changes leads to an increase in the mass of calcium oxide?", "ty": "mcq", "o": ["Reducing the mass of calcium oxide by half", "Withdrawal 10 mL of water vapor", "Doubling the mass of calcium hydroxide", "Adding 10 mL of water vapor"]}, {"n": 13, "t": "50 mL of a 0.2 M ammonium hydroxide (NH4OH) solution was diluted by adding 450 mL of distilled water. What is the dissociation degree (α) of the solution after dilution? (Ammonia ionization constant Kb = 1.8 × 10[−5] )", "ty": "mcq", "o": ["0.03 (b) 0.0095", "0.2 (d) 0.0009"]}, {"n": 14, "t": "Test tubes (A) and (B) each contain a saturated calcium carbonate solution. 2- CaCO3(s) ⇌ Ca[2+] (aq)[+ CO] 3 (aq) - In tube (A), a few drops of hydrochloric acid were added. - In tube (B), a few drops of calcium chloride solution were added. - Which of the following is true?", "ty": "mcq", "o": ["The amount of precipitate gradually increases in (A) and gradually decreases in (B)", "The amount of precipitate gradually decreases in (A) and gradually increases in (B)", "The amount of precipitate gradually increases in both tubes.", "The amount of precipitate gradually decreases in both tubes."]}, {"n": 15, "t": "Drops of solution (X) were added to a quantity of distilled water, and a Decrease in the POH value of the water was observed. - Which of the following describes solution (X)?", "ty": "mcq", "o": ["Base pOH has a value of 8", "Acid pOH has a value of 5", "Base pH has a value of 8", "Acid pH has a value of 5"]}, {"n": 17, "t": "A few drops of Na2S solution were added to the cathode half-cell in a Daniel cell. - Which of the following is correct?", "ty": "mcq", "o": ["The (emf) of the cell increases.", "The cell consumption time decreases.", "The concentration of Cu[2+] cations increases.", "The current reverses and the (emf) value decreases. 18- In the following reaction: 5Cl[-] + 8H[+] + MnO4- → Cl2 + 4 H2O + Mn[2+] ) Cl2 / 2Cl[- ] = +1.36 V, Mn[2+ ] / Mn[7+ ] = -1.52 V) -Which of the following represents the type and value of (emf) of the reaction?"]}, {"n": 19, "t": "The following table shows the components of two galvanic cells and the standard potential value for each: Cell number Anode Cathode emf 1 X Ag 0.80 V 2 Y Ag 1.56V - If a galvanic cell with electrodes (X, Y) is formed, the (emf) of the cell is equal to: (a) +2.36 V (b) - 2.36 V (C) +0.76 V (d) - 0.76 V 20- The following table shows standard reduction potential of three metals (A, B, C) g table shows standard reduction potential of three metals (A, B, C) table shows standard reduction potential of three metals (A, B, C) potential of three metals (A, B, C) otential of three metals (A, B, C) A B C -0.44 +0.34 V +0.8 -When metals (A) and (B) are each covered with a layer of metal (C), which of the following best describes the type of protection? (a) Anodic protection for (A), and cathodic protection for (B) (b) Cathodic protection for (A), and cathodic protection for (B) (c) Anodic protection for (A), and anodic protection for (B) (d) Cathodic protection for (A), and anodic protection for (B) 21- When bauxite ore is analyzed electrically, which of the following statements describe the result of the reaction? (a) Hydrogen gas evolves at cathode and oxygen gas evolves at anode. (b) Aluminum metal is deposited at cathode and oxygen gas is formed at the anode. (c) Aluminum metal is deposited at cathode and hydrogen gas is formed at anode. (d) Oxygen gas evolves at cathode and hydrogen gas rises at anode. 22- Three metals (A, B, and C), are ordered according to their reducing agent Strength as follows: [A > B > C] -When purifying metal (B), which contains impurities of (A) and (C), using an electrolytic cell containing an electrolyte solution of (B[2+] ) ions (under suitable conditions) (a) Metal (C) is oxidized during the purification process. (b) Metal (C) is reduced during the purification process. (c) Metal (A) is oxidized at the anode and (C) is deposited at the anode. (d) Metal (A) is reduced at the anode and (C) is deposited at the cathode.", "ty": "mcq"}, {"n": 20, "t": "The following table shows standard reduction potential of three metals (A, B, C) g table shows standard reduction potential of three metals (A, B, C) table shows standard reduction potential of three metals (A, B, C) potential of three metals (A, B, C) otential of three metals (A, B, C) se: es 23- (A, B, C) Three hydrocarbons: (A): gas and one of the components of oven gas by smaller ratio in hot countries. (B): Contains the same number of carbon atoms as compound (A), but its Molecular formula is two atoms less than that of compound (A). (C): Unsaturated, its molecular formula two less hydrogen atoms than Compound (B). Product of hydrogenationProduct of hydrogenation<br>(A)Product of hydrogenation<br>Product of hydrogenation<br>(B)Product of hydrogenation<br>Product of hydrogenation<br>(C) ------------ APropanePropanePropane BButanePropanePropene CButaneCyclopropanePropyne dPropanePropenePropyne", "ty": "mcq"}, {"n": 24, "t": "Three organic compounds (A), (B), and (C), each containing two carbon atoms Compound (A): saturated hydrocarbon, can be liquefied by pressure and cooling Compound (B): characterized by the presence of one hydrogen bond between Each two molecules Compound (C): characterized by two hydrogen bonds between each pair of Molecules - Which of the following represents the correct order of chemical processes required to obtain a saturated hydrocarbon with a boiling point lower than that of compound (A)?", "ty": "mcq", "o": ["Halogenation of (A) - alkaline hydrolysis – neutralization-dry distillation", "Complete oxidation of (B)- addition of sodium hydroxide- dry distillation", "Reduction of (C) - dehydration - catalytic hydrogenation", "Reaction of (B) and (C) - hydrolysis in an acidic medium - oxidation of the product 25- Monobasic carboxylic acid (containing a number of carboxyl groups equal to the number of carbon atoms) added to alcohol has a freezing point of -110.5°C. -Which of the following expresses the number of isomers of the resulting compound that have the same functional group group?"]}, {"n": 26, "t": "From the following diagram: (A)(NaOH)(B)(C)(D)<br>CnH2n+2O Complete<br>oxidation(E)<br>CnH2nO2 --------------------- If you know that organic acid (A) causes muscle contraction when its level in the body increases. -Which of the following expresses the correct name for each of (D) and (E) and the name of the process (C)?", "ty": "mcq", "o": ["D: Propanol, E: Propanoic acid , C: Dry distillation", "D: ethanol , E: Ethanoic acid , C: dehydration", "D: ethanol , E: Ethanoic acid , C: dry distillation", "D: propanol, E: propanoic acid, C: dehydration"]}, {"n": 27, "t": "Which of the following expresses the correct order of chemical processes necessary to obtain an organic compound used as antifreeze from cane sugar? (a)Hydrolysis – alcoholic fermentation – dehydration/140°C – addition of Hydrogen peroxide", "ty": "mcq", "o": ["Alcoholic fermentation – hydrolysis – dehydration/180°C – Bayer reaction (c) Hydrolysis – alcoholic fermentation – dehydration/180°C – addition of Hydrogen peroxide", "Hydrolysis – alcoholic fermentation – dehydration/80°C – addition of Hydrogen peroxide", "Acid (A) can be prepared from acid (B) by complete oxidation in the presence Of a dehydrating agent.", "Acid (B) can be prepared from acid (A) by adding concentrated nitric acid in The presence of sulphuric acid."]}, {"n": 29, "t": "Which of the following compounds burns in an abundance of oxygen to produce 3 mol of water vapor and 3 mol of carbon dioxide?", "ty": "mcq", "o": ["Propane (b) Cyclopropane (c) Propanol (d) Propane"]}, {"n": 30, "t": "Which of the following correctly describes the role of sodium hydroxide in preparation of Paraffins and the role of concentrated sulphuric acid in the preparation of olefins, respectively?", "ty": "mcq", "o": ["Removing water from alcohols in the preparation of olefins and flux substance In the preparation of Paraffins", "Removing the carboxylate group in the preparation of olefins and removing Water in the preparation of Paraffins", "Removing the carboxylate group in the preparation of Paraffins and Illuminating water in the preparation of olefins", "Absorbing water vapor in the preparation of Paraffins and neutralizing acid Vapors in the preparation of olefins OOH"]}, {"n": 32, "t": "Which of the following expresses the correct order of chemical processes necessary to prepare a substance used in printing inks from the compound resulting from the catalytic hydration of the simplest alkyne?", "ty": "mcq", "o": ["Reduction – esterification – Acidic hydrolysis– thermal cracking", "Oxidation – dry distillation – neutralization –passing water vapor", "Reduction – dehydration – hydrogenation – Halogenation", "Oxidation – neutralization – dry distillation – thermal cracking"]}, {"n": 33, "t": "Which of the following solutions can be added to a solution containing cations (Al[3+] , Fe[2+] , Ca[2+] ) to precipitate only one of these cations?", "ty": "mcq", "o": ["Sodium carbonate", "An abundance of sodium hydroxide", "An abundance of ammonium hydroxide", "Potassium chloride"]}, {"n": 34, "t": "Two consecutive elements (X, Y) from the first transition series, element (X) has the highest oxidation state in the series. Which of the following is correct?", "ty": "mcq", "o": ["Element (Y) is diamagnetic and its atom contains 6 unpaired electrons", "Element (X) is diamagnetic and its atom contains 6 unpaired electrons.", "The Y[2+] ion is paramagnetic and contains 4 unpaired electrons.", "The X[3+] ion is paramagnetic and contains 5 unpaired electrons."]}, {"n": 35, "t": "When adding 200 mL of 0.2 M sulphuric acid to 300 mL of 0.2M calcium hydroxide according to the following equation: H2SO4 + Ca(OH)2 → CaSO4 + 2H2O - Which of the following expresses the concentration of the remaining substance without reaction?", "ty": "mcq", "o": ["0.080 M", "0.040 M", "0.066 M", "0.0100 M"]}, {"n": 36, "t": "Which of the following reactions has a (Kc) value equal to the concentration of the products?", "ty": "mcq", "o": ["C (s) + O2(g) ⇌ CO2(g)", "CaCO3(s) ⇌ CaO (s) + CO2(g)", "H2(g) + O2(g) ⇌ 2H2O (g)", "N2(g) + 3H2(g) ⇌ 2NH3(g)"]}, {"n": 37, "t": "5L of saturated zinc sulphide (ZnS) solution was cooled from 60°C to 25°C, 1.53 x 10[-5] g of the salt is precipitated. If you know that the solubility product Ksp of the salt at 25°C is equal to 1 x 10[-21] - Which of the following expresses the solubility product constant (Ksp) of ZnS at 60°C? (ZnS = 97 g/mol)", "ty": "mcq", "o": ["1 X 10[-15]", "1 X 10[-21]", "3.16X10[-8]", "3.16X10[-11 ]"]}, {"n": 38, "t": "When plating a jug with a layer of silver its mass 26.25 g by passing an electric current of 25 amperes through an electrolyte containing silver ions, which of the following is the time required to complete this process? (Ag = 108 g/mol)", "ty": "mcq", "o": ["14.2 minutes", "15.2 minutes", "15.6 minutes", "13.2 minutes"]}, {"n": 39, "t": "The following figure shows two galvanic cells: <br> -Which of the following is correct for the electrodes (A,B,C)?", "ty": "mcq", "o": ["(A) is the strongest reducing agent", "(C) has the lowest oxidation potential", "(B) is the least active electrode", "(C) electrode mass increases"]}, {"n": 40, "t": "Three organic compounds (A), (B), and (C) have the molecular formula C4H8O2 (A): reacts with sodium hydroxide on cold. (B): does not react with sodium hydroxide on cold. (C): undergoes esterification and produces the simplest alcohol. - Which of the following is correct?", "ty": "mcq", "o": ["A: butyric acid , B: ethyl ethanoate", "C: Methyl propanoate , B: methyl propanoate", "A: 2-methyl propanoic acid , C: Ethyl ethanoate", "C: Methyl propanoate , B: Butanoic acid"]}, {"n": 42, "t": "Which of the following expresses the correct order of chemical processes necessary to obtain an organic substance used as a food preservative and prevents the growth of fungi?", "ty": "mcq", "o": ["Trimerization of acetylene - Halogenation in presence of a catalyst - Alkaline hydrolysis - reduction", "Catalytic reformation of hexane - alkylation - oxidation - neutralization", "Reduction of phenol - alkylation - oxidation - reduction", "Fractional distillation of coal tar - Halogenation in presence of a catalyst – Alkaline hydrolysis - alkylation"]}, {"n": 43, "t": "The general formula C4H10O represents three alcoholic isomers (A), (B), and (C)", "ty": "mcq", "o": [": Contains two methyl groups.", ": Contains three methyl groups", ": Contains one methyl group.", "2,2- Dimethyl-2-butanol"]}, {"n": 45, "t": "The following diagram represents some of iron and its compounds reactions:", "ty": "essay"}]}, {"id": "model2", "name": "Second Guiding Model (Chemistry 2026)", "tag": "2", "icon": "🔬", "qs": [{"n": 1, "t": "Which of the following represents the correct order of ions of some elements according to their magnetic attraction?", "ty": "mcq", "o": ["Fe[2+] > Ti[4+] > Mn[2+]", "Mn[2+] > Fe[2+] > Ti[4+]", "Mn[2+] > Ti[4+] > Fe[2+]", "Ti[4+] > Mn[2+] > Fe[2+]"]}, {"n": 2, "t": "Which of the following represents the product of the chemical processes to dress iron ore before reduction?", "ty": "mcq", "o": ["A decrease in the mass of the ore and a decrease in iron percentage.", "A decrease in the mass of the ore and increase volume of ore.", "A decrease in the percentage of impurities and a decrease in the percentage of iron.", "A decrease in the percentage of impurities and an increase in the percentage of iron."]}, {"n": 3, "t": "Which of the following expresses the reaction for preparing the reducing agent for iron ore in one of the furnaces?", "ty": "mcq", "o": ["Water vapor with coke", "Hydrogen gas with coke", "Carbon dioxide with methane", "Water vapor and carbon dioxide with methane"]}, {"n": 4, "t": "Which of the following represents the correct order of the processes required to obtain black oxide of iron from FeCl3?", "ty": "mcq", "o": ["Addition of alkaline solution - thermal decomposition - reduction", "Thermal decomposition - oxidation - addition of alkaline solution", "Addition of alkaline solution - reduction - thermal decomposition", "Thermal decomposition - reduction - addition of alkaline solution"]}, {"n": 5, "t": "Which of the following represents the correct order of the processes performed on limonite ore to obtain steel?", "ty": "mcq", "o": ["Roasting - addition of carbon - reduction", "Reduction - addition of manganese - roasting", "Roasting - reduction - addition of carbon", "Purification of the ore - sintering - reduction"]}, {"n": 6, "t": "Which of the following pairs of salts can be distinguished by using hydrochloric acid?", "ty": "mcq", "o": ["Na3PO4, Na2SO3 b) NaBr, NaCl"]}, {"n": 7, "t": "Which of the following cannot be used to distinguish between a calcium carbonate precipitate and a silver phosphate precipitate?", "ty": "mcq", "o": ["The difference in the color of each precipitate", "Addition of water with dissolved carbon dioxide", "Addition of ammonium hydroxide solution (NH4OH)", "Addition of acidified KMnO4 solution to each of them"]}, {"n": 8, "t": "A mixture of hydrogen sulphide and sulphur dioxide gases is released from a factory. -Which of the following solutions can be used, to get rid of these gases separately?", "ty": "mcq", "o": ["Sodium chloride solution followed by lead (II) acetate", "Hydrochloric acid followed by acidified potassium permanganate", "Lead (II) nitrate solution followed by copper sulphate solution", "Lead (II) acetate solution followed by acidified potassium"]}, {"n": 9, "t": "Salt solution (X) reacted with both: Silver nitrate solution, forming a white precipitate Ammonium carbonate solution, forming a white precipitate -Which of the following represents salt (X)?", "ty": "mcq", "o": ["Calcium chloride b) Calcium phosphate", "Sodium chloride d) Lead (II) nitrate", "Fe(OH)3(s ) , Na[+] (aq)[, AlO] 2 (aq)[, Cl][-] (aq)"]}, {"n": 11, "t": "Which of the following equations represents a process where the rate of the forward reaction is equal to the rate of the backward reaction?", "ty": "mcq", "o": ["AgNO3(aq) + NaCl(aq) = AgCl(s) + NaNO3(aq). b) HCl(aq) + H2O(l) = H3O[ +] (aq)[+Cl][-] (aq) c) N2(g) + 3H 7 2(g)= 2NH3(g) (open vessel). d) CH3COOH(aq) + H2O(l) = CH3COO[-] (aq)[+ H] 3[O][ +] (aq)"]}, {"n": 12, "t": "Hydrocyanic acid solution is in equilibrium according to the following equation: HCN (aq) + H2O(l) ⇌ H3O[ +] (aq)[+ CN][-] (aq) -Which of the following occurs when a few drops of HCl are added to this solution?", "ty": "mcq", "o": ["The degree of acid dissociation increases.", "The concentration of the CN[-] ion increases.", "The degree of acid dissociation decreases.", "The equilibrium state is unaffected."]}, {"n": 13, "t": "From the following equilibrium reaction: 2X2 (g) + Y2 (g) ⇌ 2X2Y (g) - heat - Which of the following is correct regarding its effect on this reaction?", "ty": "mcq", "o": ["Adding (X2) increases the concentration of the products and increases the Amount of energy released.", "Adding (Y2) increases the concentration of the products and increases the Amount of energy absorbed.", "Withdrawing heat from the reaction increases the value of the equilibrium constant", "Increasing the heat in the reaction decreases the value of the equilibrium constant"]}, {"n": 14, "t": "Which of the following reactions is the fastest?", "ty": "mcq", "o": ["A 10 g magnesium ribbon with 25 mL of 0.2 M H2SO4 at room temperature.", "A 5 g magnesium ribbon with 50 mL of 0.1 M H2SO4 at 35°C.", "A 10 g magnesium powder with 50 mL of 0.1 M H2SO4 at room temperature.", "A 5 g magnesium powder with 25 mL of 0.2 M H2SO4 at 35°C."]}, {"n": 15, "t": "Solution (X) has a hydrogen ion concentration [H⁺] of 1.0 x 10⁻⁹ M at 25°C. -Which of the following represents solution X?", "ty": "mcq", "o": ["A solution of a base, pOH has a value of 9.", "A solution of an acid, pOH has a value of 5.", "A solution of a base, pH has a value of 9.", "A solution of an acid, pH has a value of 5."]}, {"n": 16, "t": "In the following equilibrium reaction: 2NO2 (g) ⇌ N2 (g) + 2O2 (g) The total pressure at equilibrium is 3.2 atm, the partial pressure of NO2 is 2 atm, and the partial pressure of O2 is 1 atm. -Which of the following represents the value of Kp for the reaction?", "ty": "mcq", "o": ["0.1 b) 0.2 c) 0.05 d) 5"]}, {"n": 17, "t": "A galvanic cell is formed from electrodes (X) and (Y), Electrons were transferring toward electrode Y during operating, Which of the following is correct?", "ty": "mcq", "o": ["Reduction potential of (X) is less than the reduction potential of (Y)", "Oxidation potential of (X) is less than the oxidation potential of (Y)", "Electrode (X) is the positive electrode of the cell. d) Anions flow across the bridge towards electrode (Y) }\\ fi"]}, {"n": 18, "t": "The standard potentials of electrodes (X) and (Y) are as follows: X + 2H[+][ X]^2 (s) (1M) ( aq)[ + H] 2(g) ,[E][◦][= + 0.76 V][ Y][3+][Y] (s)[+ 3H][+] (1M) (aq)[ + 3/2H] 2 (g) ,[E][◦][= + 1.66 V ] -Which of the following is correct for an electrochemical cell formed from (X) and (Y)?", "ty": "mcq", "o": ["The anode is X and the emf value is +0.9 V", "The anode is Y and the emf value is +0.9 V", "The anode is X and the emf value is +2.42 V", "The anode is Y and the emf value is +2.42 V"]}, {"n": 19, "t": "When an electric current is passed through a copper (II) nitrate solution using a pure copper electrode connected to the positive pole of battery and an iron electrode connected to the negative pole of the battery. -Which of the following is true when the electric current is passed?", "ty": "mcq", "o": ["The concentration of nitrate ions in the solution increases while the concentration of copper ions remains constant.", "Copper ions are reduced at the cathode, and the solution remains electrically neutral. c) The concentration of copper ions increases while the concentration of nitrate ions in the solution decreases.", "The copper at the anode is oxidized, and the total charge of the solution becomes positive."]}, {"n": 20, "t": "Three electrolytic cells are connected in series, each containing inert electrodes and the following electrolytes: molten Al2O3, molten Mg3N2, and molten NaCl. Which of the following represents the ratio between the volumes of gases emitted from these cells? these cells? ------------ OxygengasNitrogengasChlorinegas a)231 b)0.1660.2500.330 c)123 d)0.2500.1660.500 21- The following reaction occurs in a galvanic half-cell: Xn+ + ne- →X --- Which of the following represents element(X) and the use of this cell? Element(X)<br>Use of the cell<br>a)<br>Hg<br>Earphones<br>b)<br>Pb<br>medical devices<br>c)<br>H2<br>drinkingwater for astronauts<br>d)<br>O2<br>spacecraft<br><br><br><br><br><br>KK", "ty": "mcq"}, {"n": 22, "t": "Which of the following is correct during the discharge of a lithium ion cell?", "ty": "mcq", "o": ["Lithium ions move from positive electrode to negative electrode.", "Electrons move from positive electrode to negative electrode.", "Lithium ions move to the negative electrode.", "Lithium ions move to the positive electrode."]}, {"n": 23, "t": "The following are general formulas for halogenated derivatives of some hydrocarbons and the uses of one of their isomers. All of the following are true regarding the type of halogenated derivative and the use of one of its isomers except: formula of derivativeType of derivative and use of one of its isomers --------- a)CnHnCl2n+1Saturated: was used as an anesthetic b)CnHn+1Cln+1Saturated: Used in drycleaning c)CnHn+1Cln-1Unsaturated: Used in carpet manufacturing d)CnHn-1ClUnsaturated: Used in thepreparation ofphenol", "ty": "mcq"}, {"n": 24, "t": "All of the following are true regarding the chemical formula and name according to the IUPAC system except: Chemical formulaname accordingto the IUPAC system --------- a)(CH3)3CC(CH3)32,2,3,3-tetramethyl butane b)(CH3)2CC(CH3)23,2-dimethyl-2-butene c)(CH3)3CC(C2H5)33,3-diethyl-2,2-dimethylpentane d)(CH3)3CCH2C2H4,4-dimethyl-2-butene", "ty": "mcq", "o": ["6", "5 c) 4", "3"]}, {"n": 26, "t": "Which of the following is the IUPAC name of the alcohol produced by the alkaline hydrolysis of 2-bromo-3-methyl butane?", "ty": "mcq", "o": ["2-Methyl-1-butanol", "3-Methyl-1-butanol", "2-Methyl-2-butanol", "3-Methyl-2-butanol"]}, {"n": 27, "t": "Two compounds (X, Y) have the following formulas: X: C2H5C2H(CH3)2 Y: CH3CHC(CH3)2 Which of the following is the IUPAC name for the compounds formed by the addition of hydrogen bromide to compounds X and Y? Product of hydrogen bromide<br>addition to compound(X)Product of hydrogen bromide<br>addition to compound(Y) --------- a)2-Bromo-2-methylpentane2-Bromo-2-methyl butane b)2-Bromo-2-methylpentane2-Bromo-3-methylpentane c)2-Bromo-4-methyl butane1-Bromo-3-methyl butane d)2-Bromo-3-methyl butane2-Bromo-2-methyl butane", "ty": "mcq"}, {"n": 28, "t": "Which of the following represents the correct order of the processes required to obtain the simplest aromatic carboxylic acid from the simplest aliphatic hydrocarbon?", "ty": "mcq", "o": ["Halogenation – Alkaline hydrolysis – Complete oxidation.", "Strong heating and rapid cooling – Polymerization – Alkylation – Nitration.", "Strong heating and rapid cooling – Polymerization – Alkylation – Oxidation.", "Halogenation – Alkaline hydrolysis – Complete oxidation."]}, {"n": 29, "t": "Which of the following processes is correct for obtaining a compound with the formula CnHnO from the compound C7H6O2?", "ty": "mcq", "o": ["Basic hydrolysis b) Dehydration c) Acid hydrolysis d) Neutralization"]}, {"n": 30, "t": "Which of the following is the correct order of processes required to obtain 1,2-dimethyl cyclohexane from a compound with the molecular formula C6H6O?", "ty": "mcq", "o": ["Neutralization - Fractional distillation - Catalytic reforming - Reduction", "Heating with zinc - Alkylation – Fridle Crafts reaction - Oxidation", "Neutralization - Alkylation - Dehydration – Fridle Crafts reaction", "Heating with zinc - Alkylation – Fridle Crafts reaction - Hydrogenation"]}, {"n": 31, "t": "Which of the following pairs of compounds can be used to produce a polymer (in only three chemical processes) used in the manufacture of arteries and heart valves?", "ty": "mcq", "o": ["Ethylene and para methyl toluene", "Ethylene glycol and Terphthalic acid", "Ethanol and para methyl toluene", "Acetylene and ethanol"]}, {"n": 32, "t": "Given that: Compound (A): An organic acid that reacts with oxygenated mineral acids and Does not react with halogenated acids. Compound (B): An organic compound CnH2nO and is oxidized to an acid used in The manufacture of insecticides and perfumes. -Which of the following describes the use of the compound resulting from the reaction of (A) and (B) in an acidic or basic medium?", "ty": "mcq", "o": ["Explosives manufacturing", "Electrical equipment", "Disinfectant manufacturing", "Heart valve manufacturing"]}, {"n": 33, "t": "All of the following are intermetallic alloys except:", "ty": "mcq", "o": ["Cementite b) Brass c) Duralumin d) Lead and gold"]}, {"n": 34, "t": "Coke plays a role in extracting zinc from its ores according to the following equation: 2ZnO + C `→` 2Zn + CO - Which of the following materials plays the same role as coke in extracting iron?", "ty": "mcq", "o": ["A mixture of (CO + H2)", "Methane gas", "Coke", "A mixture of (CO2 + H2O)"]}, {"n": 35, "t": "44.8 g of potassium hydroxide was dissolved in water to make 500 mL of solution. 10 mL of this solution was titrated using 0.2 M sulphuric acid. Which of the following represents the volume of the consumed acid? [K=39, H=1, O=16]", "ty": "mcq", "o": ["8 mL b) 40 mL c) 180 mL d) 160 mL"]}, {"n": 36, "t": "1.437 g of ZnSO4.XH2O was dissolved in water, and then barium chloride solution was added, 1.165 g of barium sulphate precipitated. -Which of the following represents the molecular formula of hydrated zinc sulphate? [Zn=65.4, Ba=137.3, S=32, O=16]", "ty": "mcq", "o": ["ZnSO4.5H2O b) ZnSO4.6H2O", "ZnSO4.7H2O d) ZnSO4.8H2O"]}, {"n": 37, "t": "From the opposite figure, every 50 mL of solution contains 2 x 10[-4] mol of solute. Which of the following represents the value of Ksp for Mg(OH)2 salt?", "ty": "mcq", "o": ["4 x 10[-6 ]", "2.5 x 10[-7]", "1.6 x 10[-8 ]", "8 x 10[-5 ]"]}, {"n": 38, "t": "From the electrolytic cells shown: <br> - -Which of the following represents a cell consisting of two electrodes: (B) as anode and (A) as cathode?", "ty": "mcq", "o": ["A spontaneous reaction occurs, emf = +2 V", "A non-spontaneous reaction occurs, emf = -1.2 V", "A non-spontaneous reaction occurs, emf = -2 V", "A spontaneous reaction occurs, emf = +1.2 V"]}, {"n": 39, "t": "In the following spontaneous reaction: Ni(s) + CuCl2 (aq) → Cu(s) + NiCl2 (aq) - -Which of the following is correct?", "ty": "mcq", "o": ["Copper ion is a strong reducing agent.", "Solutions of copper salts can be stored in nickel containers.", "Solutions of nickel salts can be stored in a copper container.", "Chloride ion is a strong oxidizing agent."]}, {"n": 40, "t": "All of the following can be used to distinguish between ethyl alcohol and phenol except:", "ty": "mcq", "o": ["Bromine water b) Sodium", "FeCl3 solution d) Acidified potassium permanganate"]}, {"n": 41, "t": "Three hydrocarbon derivatives: Compound (1): reacts with dilute hydrochloric acid and does not react with Sodium hydroxide solution. Compound (2): reacts with both compound (1) and sodium hydroxide solution Under suitable conditions. Compound (3): reacts with sodium hydroxide solution and does not react with Hydrochloric acid. All of the following are true except:", "ty": "mcq", "o": ["The general formula of compound (1) is CnH2n+2O", "The general formula of compound (2) is CnH2nO2", "Iron (III) chloride is used for detect the third compound d) The third compound is prepared by oxidizing the first compound. ia"]}, {"n": 42, "t": "Which of the following represents the correct order of processes required to obtain a saturated hydrocarbon from an alcohol that is not oxidized by normal oxidizing agents?", "ty": "mcq", "o": ["Dehydration of ethanol at 180°C followed by hydrogenation", "Dehydration of 1-propanol with sulphuric acid at 180°C", "Dehydration of 2-methyl-2-propanol followed by hydrogenation", "Dehydration of 2-propanol with sulphuric acid at 180°C"]}, {"n": 43, "t": "From the following diagram: <br>", "ty": "mcq", "o": ["Compound (X) reacts by addition in one step.", "Compound (Y) is propanal.", "Compound (Z) is a primary alcohol.", "Compound (W) reacts with sodium metal."]}, {"n": 44, "t": "A carboxylic acid with the formula C3H6O3 undergoes the following reactions: - Reaction (1): React as an acid with methanol - Reaction (2): reacts as an alcohol with acetic acid - -Which of the following represents the product of reactions (1) and (2)? product of Reaction (1) product of Reaction (2) a) CH3CH(OCOCH3)COOH CH3CH(OH)COOCH3 b) CH3CH(OH)COOCH3 CH3CH(OCOCH3)COOH c) CH3COOCH3 CH3CH(OH)COOH d) CH3CH(OH)COOCH3 CH3COOCH3 Essay Questions:", "ty": "mcq"}, {"n": 45, "t": "The following figure shows three solutions (A, B, and C) of hydrofluoric acid at room temperature: <br> - (1) Which solution has the highest pH value? - (2) Which solution has the highest fluoride ions concentration? - (3) What is the Ka value of the solution (B)? - (4) Which acid solution has a dissociation percentage= 4.9%?", "ty": "essay"}, {"n": 46, "t": "Study the following diagram: CH (A)2O2 CuCrO2H2 4 (B) Compound (A) (C) NH3 CnH(D)2n+1ON  heen] 3  Answer the following questions: 1- What is the common name for compound (A)? - 2- Write the structural formula of the compound formed from the reaction of Compound (B) with C7H6O3? - 3- What is the IUPAC name for compound (C)? - 4- Write the structural formula of compound (D). al", "ty": "essay"}]}, {"id": "model3", "name": "Fourth Guiding model (Chemistry 2026)", "tag": "4", "icon": "🧪", "qs": [{"n": 1, "t": "All of the following are characteristics of transition elements that lead to the formation of substitution alloys, except:", "ty": "mcq", "o": ["Similarity in their atomic radii", "Similarity in their chemical properties", "They have the same crystal lattice structure", "They react easily with each other"]}, {"n": 2, "t": "Two transition elements (X) and (Y) from the first transition series. (X): One of its oxides is used as a catalyst in the manufacture of superconducting Magnets. - (Y): Its atom contains unpaired electrons twice that found in element (X). - Which of the following is correct?", "ty": "mcq", "o": ["The atomic radius of element (Y) is less than that of the element follow it in The series.", "The effective nuclear charge of element (Y) is less than that of element (X).", "The maximum oxidation state of element (Y) is higher than that of element (X).", "The density of element (Y) is less than that of the preceding element in the series."]}, {"n": 3, "t": "Element (X) from the first transition series contains completely filled (d) sublevel. - Which of the following expresses the type of element (X) and electronic - distribution of this element's ion in the compound X2O?", "ty": "mcq", "o": ["Transition, [Ar] 3d^10", "Transition, [Ar] 3d^9", "Non-transition, [Ar] 3d^10", "Non-transition, [Ar] 3d^9"]}, {"n": 4, "t": "All of the following occur to iron ore during roasting process except:", "ty": "mcq", "o": ["Some gases and vapors are produced from the ore.", "All iron ores oxidizes.", "The color of limonite and siderite changes.", "Most of the impurities in the ore oxidize."]}, {"n": 5, "t": "Which transition metal ions in the following compounds is the easiest to Reduce?", "ty": "mcq", "o": ["Mn(NO₃)₃ (b) Fe(NO₃)₃", "Ti(NO₃)₄ (d) V(NO₃)₅"]}, {"n": 6, "t": "Hydrochloric acid is added to a solid salt, gas evolves forms a black precipitate when passed through an acidified copper nitrate solution. - Which of the following represents the solid salt?", "ty": "mcq", "o": ["Sodium nitrate", "Potassium sulphide", "Sodium sulphite", "Sodium bicarbonate"]}, {"n": 7, "t": "All of the following solutions can be used to distinguish between magnesium sulphate and magnesium chloride except:", "ty": "mcq", "o": ["Barium chloride", "Hot concentrated sulfuric acid", "Calcium bicarbonate", "Dilute hydrochloric acid"]}, {"n": 8, "t": "Which of the following solutions can be used to separate Fe (OH)2 mixed with - Al(OH)3 ?", "ty": "mcq", "o": ["NaOH(aq) (b) NH4OH(aq)", "NaCl (aq) (d) HCl(aq)"]}, {"n": 9, "t": "When adding hot concentrated sulphuric acid is added to salt (X) , colorless gas evolved, and the same acid reacts with salt (Y) and violet vapors evolved turns paper wet with starch to blue , then the two salts are: XY --------- ASodium chlorideSodium iodide BSodium bromideSodium iodide CSodium nitrateSodium sulphate dSodium chlorideSodium bromide", "ty": "mcq"}, {"n": 10, "t": "A mixture of copper II, lead II, and calcium nitrates. - -Which of the following expresses the correct order of substances that can be added to this mixture to separate each cation separately?", "ty": "mcq", "o": ["Sodium carbonate, then hydrogen sulphide gas", "Diluted sulphuric acid, then silver nitrate solution", "Hydrochloric acid, then sulphuric acid", "Hydrochloric acid, then sodium carbonate"]}, {"n": 11, "t": "Which of the following choices does not represents equilibrium system?:", "ty": "mcq", "o": ["Dissolving ammonia gas in water", "A reversible reaction with constant concentrations.", "Strong heating of hydrated barium chloride salt.", "A saturated solution of a sparingly soluble salt."]}, {"n": 12, "t": "(A,B) Two solutions of HCl acid: - Solution (A): Its volume one liter and contains one mole of acid. - Solution (B): Its volume one liter and contains half a mole of acid.", "ty": "mcq"}, {"n": 16, "t": "25 g of zinc are added to each solution at the same temperature. - -Which of the following is correct? (Zn=65) 13- In the following equilibrium system: 14- The following reaction at equilibrium state at a certain temperature: 15-Two solutions (A) and (B) have the same volume and initial concentration. Sample (A): weak acid solution (such as CH3COOH). Sample (B): weak base solution (such as NH4OH). 16- 500 mL of sodium hydroxide (NaOH) solution its pH = 12.0", "ty": "mcq", "o": ["The reaction rate in solution (A) is faster, and the amount of hydrogen produced In (A) is greater.", "The reaction rate in solution (A) is faster, and the amount of hydrogen Produced is equal in both solutions.", "The reaction rate in solution (B) is faster, and the amount of hydrogen produced In (B) is greater.", "The reaction rate in solution (B) is faster, and the amount of hydrogen Produced is equal in both solutions."]}, {"n": 18, "t": "A cell consisting of two electrodes (X) and (Y), where: E°(X^3 ⁺/X) = -1.670 V E°(Y²⁺/Y) = +0.34 V -Which of the following expresses the number of cells consisting of these two electrodes that must be connected in series to obtain a battery with an emf of 8.05 V and the role of each electrode in the cell?", "ty": "mcq", "o": ["4 cells, with (Y) as the anode and (X) as the cathode", "6 cells, with (Y) as the anode and (X) as the cathode", "4 cells, with (X) as the anode and (Y) as the cathode", "6 cells, with (X) as the anode and (Y) as the cathode"]}, {"n": 19, "t": "The following table represents electrical potentials of four metals (X, Y, Z, W): Z<br>WYX ------------------ Z2+/Z= -2.375 V<br>W/W2+= -1.42 VY/Y2+= -1.2 VX2+/X= 0.34 V -Which of the metals is the fastest to corrode when it is in contact with zinc? (a) X (b) Y(a) X (b) Y(a) X (b) Y(a) X (b) YZn →Zn2++ 2e- , E0= 0.76V] (c) Z (d) W<br>}\\(c) Z (d) W", "ty": "mcq"}, {"n": 20, "t": "The following figure shows three cells connected in series: (Ni=58.7g/mol, Ag=108g/mol, Cu=63.5g/mol) When an electric current passes through the circuit for a quarter of an hour, which electrode increases in mass at the greatest rate?", "ty": "mcq", "o": ["A (b) C (c) D (d) E"]}, {"n": 21, "t": "Which of the following represents an oxidation-reduction reaction can be used to obtain electrical energy?", "ty": "mcq", "o": ["Conversion of lead sulphate into Lead (IV) ions in car battery", "Coating parts of cars with (Cr) electrically metal to protect them from rust", "Analysis of water into hydrogen and oxygen by electricity.", "Combination of hydrogen with oxygen to form water."]}, {"n": 22, "t": "Which of the following occurs in a lead-acid battery during charging?", "ty": "mcq", "o": ["Pb[2+] ions are converted to Pb[4+] ions at the cathode.", "Pb[2+] ions are converted to Pb ions at the anode.", "Electrons are transferred from the (-ve) electrode to (+ve) electrode.", "Electrons are transferred from the anode to the cathode."]}, {"n": 23, "t": "Two organic compounds(X) and (Y): (X) : Hydrocarbon reacts violently with chlorine, accompanied by light and flame. (Y) : Halogenated derivative of hydrocarbon used as insecticides. - Which of the following is true?", "ty": "mcq", "o": ["X : Aromatic hydrocarbon obey to the formula CnH2n-6", "Y : Aromatic derivative obey to the formula CnH n-1Cl", "X : Aliphatic hydrocarbon obey to the formula CnH2n.", "Y : An aliphatic obey with the formula CnHnCln"]}, {"n": 24, "t": "Alkane has the molecular formula C6H14 and contains four methyl groups and doesn’ con in methylene groups. - -Which of the following expresses the IUPAC name for this compound?", "ty": "mcq", "o": ["2,2-dimethyl butane (b) 3,3-dimethyl butane", "2,3-dimethyl butane (d) 4,1-dimethyl butane"]}, {"n": 25, "t": "Which of the following is the number of isomers of open-chain aliphatic compounds and don’ react with sodium metal for the formula C4H10O?", "ty": "mcq", "o": ["3", "4", "5", "7"]}, {"n": 26, "t": "Which of the following describes a method for preparing 2-methyl propane?", "ty": "mcq", "o": ["Neutralization of 2-methyl propanoic acid followed by dry distillation.", "Dehydration of 1-propanol followed by hydrogenation.", "Neutralization of 3-methyl butanoic acid followed by dry distillation.", "Dehydration of 1-butanol followed by hydrogenation."]}, {"n": 27, "t": "Which of the following expresses the correct order of operations processes required to obtain benzene from a compound with the formula C6H13COOH?", "ty": "mcq", "o": ["Reduction – dehydration– oxidation", "Neutralization – dry distillation -hydrogenation", "Reduction – dehydration –catalytic reforming", "Neutralization – dry distillation – catalytic reforming"]}, {"n": 28, "t": "Which of the following expresses the use of the compound produced from complete oxidation of the opposite compound?", "ty": "mcq", "o": ["Preparation of Dacron fabric", "Preparation of drugs", "Preparation of Bakelite", "Preparation of explosives"]}, {"n": 32, "t": "Two organic compounds (X) and (Y): (X): 1-bromo-1-propanol (Y): 2-bromo-2-propanol -The following processes were carried out in order for each of the compounds (X) and (Y) separately: (alkaline hydrolysis – reduction) -Which of the following expresses the final result of these processes on each of the compounds (X) and (Y)? Product of(X)Product of(Y) --------- APropanalPropanone BPropanal2-propanol C1-propanol2-propanol d1-propanolpropanone", "ty": "mcq"}, {"n": 33, "t": "Which of the following describes the processes necessary to obtain a polymer used in electrical appliances?", "ty": "mcq", "o": ["Alkaline hydrolysis of 1-chloroheptane – polymerization with formaldehyde", "Oxidation of ortho-hydroxy toluene – polymerization with ethylene glycol", "Alkaline hydrolysis of 1-chloroheptane – oxidation – polymerization with Ethylene glycol", "Catalytic forming of 1-chlorohexane – alkaline hydrolysis – polymerization with Formaldehyde"]}, {"n": 34, "t": "What is the correct sequence of processes and furnaces that hematite ore goes through to obtain iron steel?", "ty": "mcq", "o": ["Roasting – Midrex furnace – Blast furnace", "Roasting – Midrex furnace – Oxygen converter", "Electric furnace – Midrex furnace – Open hearth furnace", "Open hearth furnace – Blast furnace – Oxygen converter"]}, {"n": 35, "t": "Dissolve 0.5 g of a pure sample of metal chloride (MCl) in water and add an excess of silver nitrate to the solution to precipitate 0.963 g of silver chloride. -The atomic mass of metal M is equal to: (Ag=108g/mol , Cl=35.5g/mol)", "ty": "mcq", "o": ["39 (b) 23 (c) 40 (d) 24"]}, {"n": 36, "t": "Volume (X) L of 0.2M potassium hydroxide solution, 20mL of distilled water was added to it, then 20mL of the produced solution was titrated with a solution of sulphuric acid containing 0.1176g of acid. -The volume of potassium hydroxide (X): (H=1, S=32, O=16,K=39)", "ty": "mcq", "o": ["30mL (b) 20mL (c)50 mL (d) 40 mL"]}, {"n": 37, "t": "Four saturated solutions of the following sparingly soluble at 25°C: (1) AgCl , Ksp= 1.0×10[−10] (2 ) PbI2 , Ksp= 4.0×10[−12] , (3) AgBr , Ksp= 1.0×10[−8] (4) BiI3 , Ksp= 2.7×10[−15] Which of the following expresses the order of these solutions according to their electrical conductivity?", "ty": "mcq", "o": ["1 < 2 < 3 < 4 (b) 1 < 3 < 2 < 4", "4 < 2 < 1 < 3 (d) 4 < 2 < 3 < 1"]}, {"n": 38, "t": "The corresponding figure represents one of the gas reactions. -Which of the following represents the reverse reaction equation for the reaction shown and its equilibrium constant value?", "ty": "mcq", "o": ["A ⇌ C, and Kc=0.75", "C ⇌ A, and Kc=1.33", "A ⇌ C, and Kc=1.33", "C ⇌ A, and Kc=0.75"]}, {"n": 39, "t": "The following reaction occurs in an electrochemical cell: 2M(s) + 3Zn[2+] (aq)[→ 2M][3+] (aq)[ + 3Zn] (s)[, E][○] cell[ = +1 V ] If you know that: Zn[2+] (aq)[ → Zn] (s)[ , E][○ ][= - 0.76 V ] - Which of the following expresses the type of electrode (M) and its oxidation potential, as well as the type of cell?", "ty": "mcq", "o": ["Electrode (M) is an anode and its oxidation potential = +1.76 and the cell is galvanic", "Electrode M is an anode and its oxidation potential is = +0.24 and the cell is electrolytic", "Electrode M is a cathode and its oxidation potential is = -0.24 and the cell is electrolytic", "Electrode M is a cathode and its oxidation potential is = -1.76 and the cell is galvanic"]}, {"n": 40, "t": "When one farad is passed through a molten sodium chloride, which of the following expresses the number of moles of gases evolved?", "ty": "mcq", "o": ["0.5 mol", "1 mol", "1.5 mol", "2 mol"]}, {"n": 41, "t": "(A) and (B) Organic acids: (A): Does not respond to acidity test. (B): Used in the preparation of a compound used to treat headaches. -Which of the following represents acids (A) and (B)?", "ty": "mcq", "o": ["(A) is acetic acid, while (B) is salicylic acid.", "(A) is an acid that does not reduce by hydrogen in presence of copper II Chromate, while (B) is salicylic acid.", "(A) Acetic acid, while (B) is benzoic acid.", "(A) Carbolic acid, while (B) is an acid that can be prepared by oxidizing Para-methyl toluene."]}, {"n": 42, "t": "From the following diagram: C6H6 Alkylation X Oxidation Y + C2H5OH Z Which of the following represents the compound (Z)? (a)Benzyl ethanoate (b) Ethyl benzoate", "ty": "mcq", "o": ["Phenyl ethanoate (d) methyl benzoate }\\", "(X): Acetic acid , (Y): 2-propanol , (Z): Carbolic acid (b) (X): Carbolic acid , (Y): 2-methyl-2-propanol, (Z): Acetic acid (c) (X): Methanoic acid , (Y): Benzoic acid , (Z): Carbolic acid (d) (X): Acetaldehyde , (Y): 2-propanol , (Z): Carbolic acid 44- Which of the following expresses the correct order of chemical processes necessary to prepare propane from propyl propanoate?", "Alkaline hydrolysis → Dry distillation of acid salt → Catalytic hydrogenation", "Alkaline hydrolysis → Dehydration → Catalytic hydrogenation (c) Acidic hydrolysis → oxidation → dehydration (d) Acidic hydrolysis → oxidation → addition of sodium hydroxide Essay questions: 45. Study the following diagram and answer:"]}]}, {"id": "model4", "name": "Fifth Guiding Model (Chemistry 2026)", "tag": "5", "icon": "⚡", "qs": [{"n": 2, "t": "Element X, from the first transition series, has a completely filled (d) sublevel and no unpaired electrons in any oxidation state. Which of the following represents the element type and the electronic configuration of its ion in the compound XO?", "ty": "mcq", "o": ["Transition, Ar+ 3d¹⁰", "Transition, Ar+ 3d⁹", "Non-transition, Ar+ 3d¹⁰", "Non-transition, Ar+ 3d⁹"]}, {"n": 3, "t": "Which of the following expresses one of the reasons for using nickel as a catalyst in Oil hydrogenation?", "ty": "mcq", "o": ["Increases the surface area of the reactants", "Decreases the chance of collisions between the reactant molecules.", "Electrons of 4s, 3d share in concentrating reactants on its surface.", "Increases the activation energy of the reactant molecules."]}, {"n": 4, "t": "Two non-consecutive transition elements, X and Y, are from the first transition series. Element X: One of its compounds is used as a catalyst in the contact method. Element Y: It has the same number of unpaired electrons as element X. - Which of the following is correct?", "ty": "mcq", "o": ["The radius of element (X) is larger than that preceding it in the series", "The effective nuclear charge of element (Y) is less than that of element (X)", "The density of element (Y) is less than the density of element X", "The atomic mass of element (Y) is greater than that follow it in the series."]}, {"n": 5, "t": "(A, B, and C) three consecutive elements from the first transition series. Element (A) has an anomalous electronic configuration than that of other elements in the series. -Which of the following represents the correct order of magnetic moments for ions of these elements in the oxidation state (3+)?", "ty": "mcq", "o": ["A^3 ⁺ > B^3 ⁺ > C^3 ⁺", "B^3 ⁺ > C^3 ⁺ > A^3 ⁺ c) B^3 ⁺ > A^3 ⁺ > C^3 ⁺ d) C^3 ⁺ > B^3 ⁺ > A^3 ⁺ i J"]}, {"n": 6, "t": "When a confirmatory reagent (X) is added to a salt solution (Y), the color of reagent (X) disappears and the salt (Y) oxidizes. - Which of the following represents reagent (X) and salt (Y)? The reagent XThe salt Y --------- a)Acidifiedpotassiumpermanganatesodium nitrite b)Magnesium sulphatesodium carbonate c)Lead II acetatesodium sulphide d)brown iodine solutionSodium sulphate", "ty": "mcq"}, {"n": 7, "t": "From the following diagram: (𝐗) black ppt. (Y) ← CuCl2(aq) Wh i Al 𝐊𝟐𝐂𝐎𝟑(𝐚𝐪) → (Z) ppt. - -Which of the following represents substance X, Y, and Z? X Y Z a) AgNO3(aq) AgCl(s) KCl(s) b) HCl(aq) + H2S(g) CuCl2(s) CuCO3(s) c) HCl(aq) + H2S(g) CuS(s) CuCO3(s) d) Na2S(aq) NaCl(s) KCl(s)", "ty": "mcq"}, {"n": 8, "t": "100 mL of 0.5 M calcium hydroxide is added to 200 mL of 0.6 M hydrochloric acid according to the following equation: 2HCl + Ca(OH)2 → CaCl2 + 2H2O - Which of the following represents the concentration of excess reactant?", "ty": "mcq", "o": ["0.2 M", "0.0667 M", "0.633 M", "0.316 M"]}, {"n": 9, "t": "2.52 g of hydrated crystals of acid (A) [A·XH₂O]. It was dissolved in distilled water to make a 250 mL of 0.08 M solution. 25 mL of this solution was titrated with a sodium hydroxide solution containing 0.16 g of the solute. -Which of the following expresses the number of water molecules (X) and the type Of acid?", "ty": "mcq", "o": ["X = 2 and the acid is diprotic", "X = 1 and the acid is monoprotic", "X = 2 and the acid is triprotic", "X = 3 and the acid is triprotic"]}, {"n": 10, "t": "All of the following reactions produce substances sparingly soluble in water except:", "ty": "mcq", "o": ["Magnesium sulphate solution with potassium bicarbonate solution", "Dilute hydrochloric acid with potassium thiosulphate salt", "Silver nitrate solution with potassium sulphite solution", "Carbon dioxide with calcium hydroxide solution for a short time"]}, {"n": 11, "t": "Which of the following is true for reactions (A) and (B)? (When each is performed in a sealed container)? a sealed container)?)??  ------ Reaction(A)Reaction(B) N2(g) + 3H2(g)= 2NH3(g)Mg(s) + 2HCl(aq) = MgCl2(aq) + H2(g)", "ty": "mcq", "o": ["Both reactions reach equilibrium at the same time.", "Neither reaction reaches equilibrium.", "Reaction (A) reaches equilibrium, but reaction (B) does not.", "Reaction (B) reaches equilibrium, but reaction (A) does not."]}, {"n": 12, "t": "Two solutions of two weak acids (HA) and (HB) have a pH = 3 for each - Acid HA has a concentration of 0.1 M. - Acid HB has a concentration of 0.01 M. Which of the following is correct for acids HA and HB?", "ty": "mcq", "o": ["Acids HA and HB have a different [OH[-] ]", "Acids HA and HB have the same value of Ka.", "The value of Ka for acid HB is greater.", "The value of Ka for acid HA is greater."]}, {"n": 13, "t": "Which of the following equilibrium reactions shifts to the forward reaction by increasing the volume of the container?", "ty": "mcq", "o": ["N2O4(g) ⇌ 2NO2(g)", "H2(g) + I2(g) ⇌ 2HI(g)", "2SO2(g) + O2(g) ⇌ 2SO3(g)", "N2(g) + 3H2(g) ⇌ 2NH3(g) 14- Two tubes (A, B) each contain equal masses of an active metal and the same acid. If the reaction in tube (B) is ended in a shorter time than in tube (A). Which of the following is the reason of the different in reaction time of the two reactions?"]}, {"n": 15, "t": "Four solutions have the same concentration: 1- HCl solution 2- NaOH solution 3- CH3COOH acid solution 4- NH4OH solution -The order of these solutions according to the hydronium ion concentration is:", "ty": "mcq", "o": ["1 > 3 > 4 > 2 b) 2 > 4 > 3 > 1", "1 > 2 > 3 > 4 d) 1 > 3 > 2 > 4"]}, {"n": 16, "t": "A saturated lead (II) chloride (PbCl2) solution is in equilibrium according to the Following equation: PbCl2(s) ⇌ Pb[2+] (aq)[ + 2Cl][-] (aq) -Which of the following is correct regarding the solubility of PbCl2 when a small Amount of each of the following salts is added separately?", "ty": "mcq", "o": ["Solubility decreases with addition of sodium sulphate solution.", "Solubility increases with addition of sodium nitrate solution.", "Solubility decreases with addition of lead (II) acetate solution.", "Solubility increases with addition of potassium nitrate solution."]}, {"n": 17, "t": "A galvanic cell consists of: An electrode (X) in XSO4 solution An electrode (Y) in YSO4 solution -If metal (X) is a stronger reducing agent than metal (Y), which of the following describes what happens in this cell?", "ty": "mcq", "o": ["Electrons move from (Y) to (X) through the external wire", "The mass of electrode (X) increases by time", "Negative ions move from the bridge to the half cell (X)", "Reduction of (X[2+] ) ions occurs at the anode"]}, {"n": 18, "t": "An electrochemical cell undergoes the following reaction: 2Y + 3X[+] (s) (aq)[ → 2Y][+] (aq)[ + 3X] (s)[; emf = +1.6 V ] - Which of the following is correct for both electrode type (Y) and cell type? the Y-electrode type type of cell --------- AcathodeGalvanic BanodeElectrolytic CanodeGalvanic dcathodeElectrolytic Hes ll oo<br>ayay ------ oo<br>waY<br>ayay 19- Four electrodes[X], [Y], [Z], [L], where: (X2+/X)<br>(Y2+/Y)<br>(Z/Z2+)<br>(L/L2+) -0.44 V<br>+1.5 V<br>-0.34 V<br>+1.18 V Which of the following reactions represents a cell that produces the greatest electromotive force (emf)? a) Y + L²⁺→Y²⁺ + L b) X + L²⁺→X²⁺ + L c) L + Y²⁺→L²⁺ + Y d) X + Y²⁺ → X²⁺ + Y 20- Which of the following examples illustrates cathodic protection of metals against corrosion? (a) Coating iron with an inorganic substance such as red primer (b) Galvanizing iron by dipping it in zinc (c) Coating iron with a metal that has a lower reduction potential than iron (d) Coating iron with a metal that has a lower oxidation potential than iron 21- Which of the following represents the anode half-reaction during the electrolysis of molten sodium hydride (NaH) between graphite electrodes? a) 2Na++ 2e− →2Na b) 2Na →2Na++2e− c) 2H2→2H++ 2e⁻ d) 2H- →H2+ 2e⁻ 22- Which of the following metals that deposits 18 g when 1.5 F passes through one of its molten salts? (Na = 23, Mg = 24, Ca = 40, K = 39) a) Na b) Mg c) Ca d) K 23- Two organic compounds, (X) and (Y):<br>X: An aliphatic compound that, upon oxidation, produces a compound used in<br> Polyester production. Y:An aromatic compound whose sodium salt is used to prevent growth of fungi. -Which of the following is correct? a) Compound (X) obey to the formula CnH2n+2O2and does not contain a carboxyl group. b) Compound (Y) does not obey the formula CnH2nO2and contains a carboxyl group. c) Compound (X) obey to the formula CnH2n+2O2and contains a carboxyl group. d) Compound(Y) obey to the formula CnH2nO2and contains a carboxyl group. 24- Which of the following hydroxyl compounds cannot be obtained by ammonolysis of an ethyl benzoate isomer? a) C6H5OH b) C6H5CH2CH2OH c) C6H5CH2OH d) C2H5OH<br>Hesll", "ty": "mcq"}, {"n": 25, "t": "The following equation illustrates one of the thermal catalytic cracking processes: 𝐚 C20H42(s) → X(l) + Y(g) + Z(l) X: An alkene containing 30 mol of atoms per mole. Y: The heaviest gaseous alkene. - Which of the following does not represent compound (Z)?", "ty": "mcq", "o": ["It is produced from the hydrogenation of hexyne.", "It reacts with hydrogen halides (HBr) according to Markownikoff’s rule.", "Its catalytic reforming yields a compound used as organic solvent.", "It has the general formula CnH2n+2."]}, {"n": 26, "t": "X, Y, and Z are three hydrocarbon derivatives: - X: has the general formula CnH2nO2 and reacts with active metals. - Y: has the general formula CnH2nO2 and does not react with active metals. Z: has the general formula CnH2n+2O and reacts with active metals. If the molar masses of (X, Y, and Z) are equal, which of the following is correct regarding their boiling points?", "ty": "mcq", "o": ["(Y) has a higher boiling point than (Z).", "(Z) has a higher boiling point than (X).", "(Y) has a higher boiling point than (X).", "(X) has a higher boiling point than (Z)."]}, {"n": 27, "t": "An organic compound with the molecular formula C5H10O2 has a complex Functional group of two functional groups. - Which of the following could be the IUPAC name for this compound?", "ty": "mcq", "o": ["2,2-Dimethyl butanoic acid b) Methyl butanoate", "Ethyl propanoate d) 2,2-Dimethyl propanoic acid"]}, {"n": 28, "t": "Which of the following represents the correct order of some organic compounds according to the amount of oxygen required for the complete combustion of one mole? a) Methane > Ethane > Ethyne", "ty": "mcq", "o": ["Ethane > Ethene > Ethyne", "Ethyne > Ethene > Ethane", "Ethyne > Ethene > Methane"]}, {"n": 29, "t": "Compound A, produced by the fractional distillation of coal tar, the following reactions, in order, under the standard conditions for each occurs for compound A: (Chlorination by substitution - Reaction with sodium hydroxide - Nitration) -Which of the following represents a use of the produced compound? a) Insecticide b) Widen arteries c) Explosive substance d) Bakelite polymer", "ty": "mcq"}, {"n": 30, "t": "Which of the following is the IUPAC name of the compound shown?", "ty": "mcq", "o": ["3,6-dinitro benzoic acid O2N COOH b) 2,5-dinitro benzoic acid c) Meta, para-dinitro benzoic acid d) 3,5-dinitro benzoic acid NO2"]}, {"n": 31, "t": "Which of the following describes the properties of each of the following types of alcohols?", "ty": "mcq", "o": ["Primary and secondary alcohols react with sodium metal, while tertiary do not.", "Primary alcohols are oxidized only to form a mixture of aldehyde and ketone at the end of the reaction.", "Primary alcohols have a continuous carbon chain, while secondary and tertiary alcohols have branched carbon chains.", "Primary and secondary alcohols react with acidified potassium permanganate, while tertiary do not."]}, {"n": 32, "t": "Three organic compounds are used in the manufacture of polymers: - (Reaction of compound (1) with compound (2)) gives polymer used to treat heart disease. - (Reaction compound 3 with an aldehyde) gives polymer used in the manufacture Of cigarette ash trays. - Which of the following represents each of the three compounds? Compound 1Compound 2Compound 3 ------------ a)EthyneHydrogen fluorideTeflon b)EthyleneglycolPhthalic AcidCarbolic acid c)Ethylene GlycolTerphthalic AcidCarbolic acid d)Phthalic AcidCarbolic acidEthylene Glycol", "ty": "mcq"}, {"n": 33, "t": "Fe₂O₃ can be obtained by all of the following methods except:", "ty": "mcq", "o": ["Addition of (dil.) H₂SO₄ to the product of reduction Fe3O4/ Addition of alkali /", "Passing hot air on red hot iron / Oxidation", "Leaving iron (II) sulphate in air for a period of time / Addition of alkali / Heating above 200℃", "Addition of iron to diluted oxalic acid / Heating in the absence of air / Oxidation"]}, {"n": 34, "t": "Which of the following processes is necessary to produce steel iron from a sample of siderite?", "ty": "mcq", "o": ["Roasting - Oxidation - Removing impurities - Addition of carbon.", "Roasting - Reduction - Removing impurities - Addition of carbon.", "Removing impurities - Roasting - Addition of carbon - Reduction.", "Removing impurities - Reduction - Addition of carbon - Roasting."]}, {"n": 35, "t": "5 g of impure sample of aluminum sulphate Al2(SO4)3 was dissolved in water. An excess amount of ammonia solution was added until aluminum hydroxide was completely precipitated. The precipitate was separated and dried, yielding a mass of 2.03 g. Which of the following represents the percentage of aluminum in the sample? [Al=27, S=32, N=14, O=16, H=1]", "ty": "mcq", "o": ["85.95% b) 14.05% c) 52.5% d) 8.75% 36-A solution containing (Ag[+] , K[+] , Cu[2+] ) cations.", "Black precipitate (b) White precipitate", "A mixture of white and black precipitates (d) No precipitate is formed"]}, {"n": 37, "t": "Lead (II) chloride is sparingly soluble in water, its solubility product [Ksp=1.2x 10⁻⁵] at 25 ℃ - -Which of the following represents the volume of a saturated solution containing 0.1 g of salt at the same temperature? (PbCl2 = 278 g/mol)", "ty": "mcq", "o": ["25 mL (b) 50 mL (c) 100 mL (d) 150 mL"]}, {"n": 38, "t": "In the following equilibrium reaction: A(g) + B(g) ⇌ 2C(g) - The concentrations of reactants and products at 200 ℃ in 1L container are: [A] = 0.200 M, [B] = 3.00 M, [C] = 0.500 M - Which of the following represents the number of moles of (A) that must be added To make [C] = 0.700 M at the same temperature?", "ty": "mcq", "o": ["0.225 mol b) 0.305 mol c) 0.417 mol d) 0.610 mol", "Cells (2) is used to plate metal (X)", "Cell (1) is used to purify metal (X)", "The potential of battery is slightly greater than"]}, {"n": 40, "t": "In Daniell cell, if the mass of consumed zinc is 6.5 g, then the mass of deposited copper is: (Zn = 65, Cu = 63.5)", "ty": "mcq", "o": ["6.5 g, deposited at the positive electrode", "6.35 g, deposited at the anode half-cell", "6.35 g, deposited at the positive electrode", "3.25 g , deposited at the cathode half-cell"]}, {"n": 41, "t": "From the following diagram: -Which of the following is true? C2H4 Alkaline medium KMnO4 X Acidic medium KMnO4 Y C[Ota] Oa a) (X): Used in the manufacture of insecticides, (Y): Dibasic acid b) (X): Used in car radiators, (Y): Removes the color of acidified KMnO4", "ty": "mcq", "o": ["(X): Used in the manufacture of polymers, (Y): Is C2H2O4", "(X): Used in the treatment of burns, (Y): Is C2H2O4"]}, {"n": 42, "t": "By performing the following processes (in order) on Organic acid that has a pungent odor and freezes at 16 ℃ ): (Neutralization - Dry distillation - Heating then rapid cooling - Trimerization). - Which of the following represents the final product of these processes?", "ty": "mcq", "o": ["Branched aromatic hydrocarbon. b) Unsaturated aliphatic hydrocarbon.", "Unbranched aromatic hydrocarbon. d) Saturated aliphatic hydrocarbon. 43- Which of the following represents the correct order of processes required to obtain the compound with the formula C6H5COOH from a compound with the formula C7H15COOH?", "Catalytic reforming - Dry distillation - Oxidation - Neutralization", "Neutralization - Dry distillation - Oxidation - Catalytic reforming"]}, {"n": 44, "t": "Three organic compounds:", "ty": "mcq", "o": [": An aliphatic organic compound with the general formula CnH₂n+2O₂", ": An aromatic acid containing two different functional groups", ": A liquid organic compound used in the manufacture of artificial fats and as a Base for manufacture of compound with a general formula CnH2n+2O3 - Which of the following is true for compounds A, B, and C? a) Compound (A) effervesces when sodium bicarbonate is added to it. b) Compound (B) turns potassium dichromate from orange to green. c) Compound (C) removes the color of alkaline potassium permanganate solution. d) Compound (A) gives a purple color with Iron III chloride solution."]}, {"n": 45, "t": "You have four test tubes containing different salt solutions: <br> - 1- Write the chemical name of the reagent used to distinguish between the solid Salts of the four solutions by one experiment. - 2- Which of the four solutions gives a precipitate with an excess of sodium Hydroxide solution? - 3- Which of the above solutions gives a gas and a precipitate when dilute sulphuric Acid is added? - 4- Which of the above salts cannot detects its cation by a normal chemical reagent?", "ty": "essay"}, {"n": 46, "t": "From the following diagram: <br> If you know that compound (E) is used as a medicinal drug and is recommended to be taken with plenty of water to prevent stomach ulcers: - Write the chemical formulas of compounds (Z) and (Y). - Write the chemical formula of the acid produced by the acidic hydrolysis of Compound (F). - Mention one use of compound (F). <br> - SP", "ty": "essay"}]}, {"id": "model5", "name": "Sixth Guiding Model (Chemistry 2026)", "tag": "6", "icon": "💎", "qs": [{"n": 1, "t": "Two elements (A, B) from the first transition series, each (A+^2 , B+2) containing four Single electrons and element (A) is less dense than element (B). - Which of the following expresses a use for each of (A, B)?", "ty": "mcq", "o": ["(A): in manufacture of soft drink bottles", "(A): in plating of metals to protect it from rust", "(A) : in leather tanning and", ": in manufacture of surgical tools"]}, {"n": 2, "t": "If you know that the elements (X, Y, Z, and W) are transition elements from the first Transition series. - W: has the highest magnetic moment in the series - Z : its sublevel (d) is filled with electrons. - X : Pairing doubling of electrons in the sublevel (3d) starts after it. - Y: is the first element in the series that does not lose all electrons (4S,3d). - Which of the following conversions gives a compound with lower energy?", "ty": "mcq", "o": ["WO3 → WO (b) ZO → Z2O3", "Y2O3 → YO (d) X2O3 → XO"]}, {"n": 3, "t": "Three transition elements (A, B, and C) - -The number of unpaired electrons in (A) decreases when it changes from Atomic state to +2 ion. - -The number of single electrons in element (B) increases when it changes from +2 to +3 - The number of single electrons in element (C) decreases when it changes from +2 to +3 And its radius is equal to that of (A) Which of the following expresses the correct order of these elements according to their density?", "ty": "mcq", "o": ["A < B < C b) A < C < B C) B < C < A d) B < A < C"]}, {"n": 4, "t": "(A,B,C and D) Four consecutive transition elements from the first transition series, the electronic distribution of ion (B[3+] ) ends with 3d^3 ,Which of the following is correct? a) The magnetic moment of (A) increases with the loss of two electrons.", "ty": "mcq", "o": ["The magnetic moment of (B) increases with the loss of two electrons.", "The magnetic moment of (C) decreases with loss the first electron from the (d) sublevel d) The magnetic moment of (D) decreases with the loss of the first electron from the (d) level."]}, {"n": 5, "t": "Which of the following processes causes an increase in the magnetic moment of iron ions in their compounds?", "ty": "mcq", "o": ["Heating the compound resulting from adding ammonium hydroxide to iron III chloride above 200°C", "Heating the compound resulting from adding iron filings to dilute sulphuric acid.", "Heating limonite ore strongly in air.", "Heating siderite ore in absence of air."]}, {"n": 6, "t": "Hydrochloric acid is added to a salt of (X[2-] ) anion, a gas (Y) evolves that oxidizes with the normal oxidizing agents. - -Which of the following applies to the anion (X[2-] ) and the gas (Y)? Anion(X2-)Gas(Y) --------- ANitriteColorless,turns reddish brown in air. BsulphiteHas a pungent odor and turns acidified potassium dichromate<br>solution from orange togreen CsulphideOdorless and produces a black precipitate with lead acetate II<br>solution. dCarbonateColorless,odorless and turns lime water milky", "ty": "mcq"}, {"n": 7, "t": "Which of the following is not preferred for distinguishing between nitrate and nitrite anions in their salts?", "ty": "mcq", "o": ["Diluted hydrochloric acid", "Hot concentrated sulfuric acid", "Potassium permanganate solution acidified with sulphuric acid", "Iron II sulfate with drops of concentrated sulphuric acid"]}, {"n": 8, "t": "Add acid (X) to three salts (A, B and C): - In case of salt (A): a colorless gas evolves, partially oxidized into violet vapors - In case of salt (C): a reddish-brown gas evolves. Which of the following expresses acid (X) and the three salts? Acid(X)Salt(A)Salt(B)Salt(C) --------------- ADiluted hydrochloric acidCaI2MgBr2Pb(NO3)2 BConcentrated nitric acidNaNO3NaINaBr CConcentrated sulphuric acidNaBrNaNO3NaI DConcentrated sulphuric acidCaI2MgBr2Pb(NO3)2 all", "ty": "mcq"}, {"n": 9, "t": "From the following diagram: Precipitate (A) Y(aq) BaCl2 (aq) X(aq) Precipitate (B) Soluble in diluted acids Soluble in diluted acids Which of the following is correct? solution (X) precipitation (A) (a) Na2SO4 Ba3(PO4)2 (b) Na2CO3 BaSO4 (C) Na2SO4 BaCO3 (d) Na2CO3 Ba3(PO4)2", "ty": "mcq"}, {"n": 10, "t": "Two salts (A and B) - Acid of salt (A) is used to detect cation of salt (B). - Acid of salt (B) is used to detect anion of salt (A). Salt (A) Salt (B) (a) KCl CuSO4 (b) Hg2SO4 KCl (C) KCl PbSO4 (d) K2SO4 NaNO3", "ty": "mcq"}, {"n": 11, "t": "Ammonia is prepared in industry by the Haber-Bosch reaction according to the + 3H 2NH equation: N2 (g) 2(g) 3(g) Which of the following graph represents the effect of increasing the partial pressure of nitrogen gas on the previous equilibrium? <br>", "ty": "mcq", "o": ["A saturated solution of salt that is sparingly soluble in water", "The dissolution of carbon dioxide gas in water in a closed container", "The dissolution of acetic acid in water in an open container (d) Obtaining oxygen gas by decomposing hydrogen peroxide Val"]}, {"n": 13, "t": "The following table shows the pH values of four solutions of different acids with the same concentration: the same concentration: ------ solutionpH  A1 B6 C3 -The correct order of these solutions according to their ionization constant Ka is:", "ty": "mcq", "o": ["B ≻ A ≻ C (b) A ≻ B ≻ C", "C ≻ B ≻ A (d) A ≻ C ≻ B"]}, {"n": 14, "t": "The following balanced reaction at a certain temperature: 2A + 3B ⇌ 2C + 3D (aq) (aq) (aq) (aq) If the concentrations of the reactants and products at equilibrium are: A+ = 1.5M, B+ = 2.3M, C+ = 3M, D+ = 4.5M By increasing the concentration of substance (A) and the reaction reaching equilibrium again at the same temperature, then the concentrations at equilibrium become as follows: A+ = 2.5M, C+ = 4M, D+ = 6M -Which of the following expresses the concentration of substance (B) at equilibrium?", "ty": "mcq", "o": ["29.96 M", "6.98 M", "3.83 M", "2.64 M"]}, {"n": 16, "t": "16- Acetic acid solution (X) of 0.1M, diluted by adding water to get a solution (Y) Of (0.01M). - -Which of the following does not describe solutions (X) and (Y)?", "ty": "mcq", "o": ["The electrical conductivity of solution (Y) is higher than that of solution (X)", "The concentration of hydronium ions in solution (X) is higher than that in (Y)", "The pH value of solution (Y) is higher than that of solution (X)", "The ionization constant of acid (X) is higher than that of (Y)"]}, {"n": 17, "t": "The reaction that occurs inside an electrochemical cell: - 3Cu[2+] + 2Cr  3Cu + 2Cr[3+ ] - knowing that: Cu[2+] +2e[-] → Cu, E[o] = + 0.340 V Cr → Cr[3+] + 3e[-] , E[o] = + 0.740 V - Which of the following expresses the type of the cell and its emf value?", "ty": "mcq", "o": ["Galvanic cell, (+1.08 V) = emf", "Electrolytic cell, (-1.08 V) = emf", "Galvanic cell, (+0.4 V ) = emf", "Electrolytic cell,( -0.4 V) = emf"]}, {"n": 25, "t": "(X and Y) are two isomers of the formula C4H8O with different functional groups If (X) turns acidified potassium dichromate to green, while (Y) has no effect on Acidified potassium dichromate. - -Which of the following represents (X) or (Y)?", "ty": "mcq", "o": ["X: 2-methyl-1-propanol. b) Y: 2-methyl propanal.", "X: 2-methyl propanal. d) Y: 3-methyl-2-butanone."]}, {"n": 26, "t": "The corresponding structure of one of polymers:- - Which of the following expresses the monomer properties of this polymer?", "ty": "mcq", "o": ["It reacts by addition according to Markownikoff’s rule.", "It reacts with HBr to give 1-bromo-butane.", "It reacts with catalytic hydration to give 2-butanol.", "It reacts with bromine to give 2,2-dibromo butane."]}, {"n": 27, "t": "Three organic compounds:", "ty": "mcq", "o": [": C2H4O", ": C2H6O", ": C2H4 :", "Oxidation of both (A, C) produces an acid used in the manufacture of dyes."]}, {"n": 28, "t": "A compound has the molecular formula: C7H7NO - -Which of the following esters can be used to prepare that compound?", "ty": "mcq", "o": ["C6H5 COO-CH3 b) C6H5-OOC- CH3", "C6H5CO-NH2 d) CH3-COO-CH3"]}, {"n": 29, "t": "(X, Y and Z) are three hydrocarbon derivatives have the following molecular Formulas: (X): CH₂O (Y): C₂H₆O (Z): C₂H₆O₂ -Which of the following represents (X, Y and Z)? (X) (Y) (Z) a) Ketone aliphatic Ether Primary dihydric alcohol b) Aldehyde Primary monohydric alcohol Primary dihydric alcohol C) Carboxylic acid Monohydric secondary alcohol Aliphatic ester d) Aldehyde aliphatic Ether Carboxylic acid", "ty": "mcq"}, {"n": 30, "t": "Three organic compounds (A, B and C):- - When adding excess of NaOH to the three compounds: - (B): Consumes quantity of NaOH double that consumed by (A) - (C): doesn’t react - -When heating (A) with (C), the produced compound is used as a flavor Which of the following represents compounds (A), (B), and (C)?", "ty": "mcq", "o": ["(A) :C3H6O3, (B) :C7H6O3, (C) : C2H6O", "(A) :C7H6O3, (B) C3H6O3, (C) C2H6O", "(A) :C2H6O, (B): C3H6O3, (C) :C7H6O3", "(A): C3H6O3,(B): C2H6O,(C): C7H6O3"]}, {"n": 31, "t": "The following table shows the molecular formulas of organic compounds: ABC --------- C3H8O3C3H8O2C2H4O2 - -Which of the following represents the correct order of the compounds (C, B, A) according to boiling point?", "ty": "mcq", "o": ["C > B > A (b) A > C > B (c) B > A > C (d) A > B > C"]}, {"n": 32, "t": "Which of the following is the correct IUPAC name for the product of hydrolysis of the compound C6H5OOCCH3 in an acidic medium?", "ty": "mcq", "o": ["Acetic acid and hydroxy benzene b) Ethanoic acid and phenol", "Methanol and benzoic acid d) Methyl alcohol and benzoic acid 33- (Y, X) are two consecutive transition elements in the first transition series, each of them has a compound in its highest oxidation state act as an oxidizing agent. - Which of the following is correct?", "(X) is used as a catalyst in the ammonia industry.", "(Y) is used in car springs"]}, {"n": 34, "t": "(12 g) of a mixture of sodium phosphate and potassium iodide is dissolved in water and excess of silver nitrate solution is added to it, forming a yellow precipitate with a mass of (X g). Then, an excess of ammonium hydroxide solution is added, leaving a precipitate with a mass of (8.5 g). - Which of the following expresses the mass of the precipitate (X)? (Ag=108, K=39, Na=23, I=127, P=31, O=16, N=14)", "ty": "mcq", "o": ["6g b) 8.5g c) 15.25g d) 23.82g"]}, {"n": 35, "t": "If you know that (16 mL) of potassium hydroxide solution is needed to titrate (32 mL) of sulphuric acid. - -which of the following expresses the concentration of sulphuric acid?", "ty": "mcq", "o": ["Equal to the concentration of potassium hydroxide", "Half the concentration of potassium hydroxide", "Quarter The concentration of potassium hydroxide", "Four times the concentration of potassium hydroxide."]}, {"n": 36, "t": "If you know that the solubility of magnesium carbonate MgCO3 in water at a temperature of 25ºC is equal to (4.4 X 10[-5] mol / 100 mL), then the solubility product (Ksp) of this salt is equal to:", "ty": "mcq", "o": ["4.16 x 10[-11]", "1.9 x 10[-7]", "19.36 x 10[-10]", "6.44 x 10[-4]"]}, {"n": 38, "t": "The amount of electricity required to precipitate (1 mol) of Au[3+] can precipitate (1.5 mol) of:", "ty": "mcq", "o": ["Na[+]", "Mg[2+ ]", "Cu[+]", "Al[3+]"]}, {"n": 39, "t": "Permanganate ions MnO4 can be prepared by electrolysis of a solution containing manganese ions Mn[2+] according to the following reaction: Mn[2+] + 4 H2O → MnO4- + 8H+ + 5e- - The amount of electricity required to prepare 0.2 mol of permanganate ions is equal - to:", "ty": "mcq", "o": ["48250 C", "193000 C", "19300 C", "96500 C"]}, {"n": 40, "t": "Three organic compounds with the molecular formula C3H8O - (X): Decolorizes acidified potassium permanganate solution and forms a compound That reacts with sodium carbonate. (Y): Decolorizes acidified potassium permanganate solution and forms a compound That does not respond to acidity test. (Z): Does not decolorize acidified potassium permanganate solution. (X)(Y)(Z) ------------------ A102 B212 C221 D122", "ty": "mcq"}, {"n": 41, "t": "(A) and (B) are hydroxyl organic compounds, the (O-H) bond in compound (A) is Longer and weaker than that in compound (B) . - Which of the following is correct?", "ty": "mcq", "o": ["(A and B) react with sodium hydroxide", "(A and B) react with HCl acid", "(A) reacts with sodium hydroxide while (B) does not react", "Both compounds (A) and (B) can be detected with FeCl3 solution"]}, {"n": 42, "t": "From the following diagram: Sodium Dry Thermal X Y + Z deaconate distillation cracking Simplest alkene Hydrogenation M W - Which of the following describes compound (M)?", "ty": "mcq", "o": ["(M): Saturated cyclic hydrocarbon, W: Oxidizes to an aromatic acid B) (M): Cyclohexane , W: Oxidizes to an aromatic acid c) (M): Aromatic hydrocarbon , W: gives substitution derivatives in the para position d) (M): Aliphatic hydrocarbon , W: gives substitution derivatives in the meta position - 43 Three organic acids (A, B, C):", "(A) :C2H4O2 , (B) :C3H6O3 , (C) : C7H6O3", "(A) :C3H6O3 , (B): C2H4O2 , (C) : C7H6O3", "(A) :C2H4O2 , (B): C7H6O3 , (C) : C3H6O3"]}, {"n": 44, "t": "(X and Y) are carboxylic acids with the following molecular formulas: - (X): (C₇H₆O₃) (Y): (C₃H₆O₃) -Which of the following expresses the reaction of one mole of (X and Y) with the substances listed in the table? of<br>Number<br>moles<br>Na<br>required<br> (<br>Y<br>)<br>acid<br>the<br>forof<br>Number<br>moles<br>Na<br>required<br> (<br>X<br>)<br>acid<br>the<br>for<br>required<br>of<br>Number<br>moles<br>NaOH<br> (<br>Y<br>)<br>acid<br>the<br>forrequired<br>of<br>Number<br>moles<br>NaOH<br> (<br>X<br>)<br>acid<br>the<br>for --------------- a1111 b2212 C2221 d2222 <br> - 1- Write the chemical formulas for (X) and (C). - 2- Name process number (1). - 3- Write the IUPAC name of the compound that yields a sodium organic salt in One process 4- Write the structural formulas of the alcoholic isomer of compound (X) that Does not oxidize with normal oxidizing agents 7 Val", "ty": "mcq"}]}, {"id": "model6", "name": "Seventh Guiding Model (Chemistry 2026)", "tag": "7", "icon": "🌡️", "qs": [{"n": 1, "t": "Three consecutive elements (A, B and C) from the first transition series. Element (C) has twice the number of unpaired electrons as element (B) and three times the number of unpaired electrons as element (A). - Which of the following represents the uses of elements (A, B and C)? ChoicesABC ------------ a)Dry cellmetal platingFehling's solution<br>composition b)Hydrogenation of oilsheatingcoilsluminescentpaints c)Oxidizing agent and<br>disinfectinggalvanizationmagnet<br>manufacturing d)artificial jointscar spring<br>manufacturingmetal plating", "ty": "mcq"}, {"n": 2, "t": "Element (X) is an element of the second transition series, and its electronic configuration ends with nS[(n-3)] , (n-1)d[2n] - -Which of the following represents the type of element (X) and its use?", "ty": "mcq", "o": ["Transition element used in coinage metals", "Transition element used with a non-transition element in the manufacture of Rechargeable batteries", "Non-transition element used with a transition element in the manufacture of Rechargeable batteries", "Non-transition element whose oxide is used in the manufacture of rubber and paints 3- A main transition element (X), whose (d) sublevel contains two unpaired Electrons in its oxidation state (3+)."]}, {"n": 4, "t": "(X, Y) represent processes that take place during an iron ore dressing: - (X) : reduces the size of iron ore particles while its mass remains constant. - (Y) : increases the number of unpaired electrons in the iron ion. Which of the following represents processes (X, Y)? X Y a) crushing Siderite roasting b) sintering Surface tension c) crushing Hematite roasting d) sintering Magnetic separation", "ty": "mcq"}, {"n": 5, "t": "Element (X) from the first transition series, its X[2+] ion contains (11) filled orbitals and (3) half-filled orbitals. - -Which of the following does not describe element (X)?", "ty": "mcq", "o": ["Its atomic mass is less than the element that follows it", "Its density is less than the element that follows it", "All its compounds are paramagnetic", "Its effective nuclear charge is greater than the element that precedes it"]}, {"n": 6, "t": "Two salts (X & Y) both contain the same cation: - X: dissolves in water and dilute acids - Y: does not dissolve in water but dissolves in dilute acids - When dilute hydrochloric acid is added to each salt separately, gas (Z) is released. - Which of the following represents gas (Z)?", "ty": "mcq", "o": ["A white precipitate is formed when passed through potassium hydroxide solution For a short time.", "Produces by heating salt (X) , and salt(Y) is formed", "When passed through water containing salt (Y), the salt dissolves as sodium Bicarbonate.", "When passed through clear limewater for a long time, it becomes milky."]}, {"n": 7, "t": "Dilute hydrochloric acid is added to Three salts (X, Y, and Z), separately, and the results were as follows: - In the case of salt (X), a colorless gas was released that is easily oxidized. - In the case of salt (Y), a white precipitate was formed. - In the case of salt (Z), a gas was released that turns a paper wetted with lead (II) acetate to black. -Which of the following represents salts (X, Y, and Z)? <br>", "ty": "mcq"}, {"n": 8, "t": "Concentrated sulfuric acid was added to three solid salts (A, B, C). In the case of salt (A): a colorless gas was released that was difficult to oxidize. In the case of salt (B): colored vapors were released, and their solution could be used to detect one of the anions of the first group. In the case of salt (C): no gas was released. Which of the following represents salts (A, B, C)? Salt(A)Salt(B)Salt(C) ------------ a)CaCl2MgBr2PbSO4 b)CaCl2MgI2Ag3PO4 c)MgBr2NaNO3Ag3PO4 d)CaI2MgBr2PbSO4", "ty": "mcq"}, {"n": 9, "t": "Four solutions are obtained by dissolving equal masses of four different substances in distilled water, all of which have the same volume. - Which of these solutions has the lowest concentration? (Ca=40, K=39, O=16, H=1, Li=7, Na=23, Cl=35.5)", "ty": "mcq", "o": ["LiCl b) KOH", "NaCl d) Ca(OH)2"]}, {"n": 10, "t": "A solution contains the cations of (Cu[2+] , Pb[2+] , and Ca[2+] ). Which of the following can be added to the previous solution to obtain a solution containing only copper cation?", "ty": "mcq", "o": ["Dilute sulfuric acid", "Sodium carbonate solution", "Sodium nitrate solution", "Dilute hydrochloric acid"]}, {"n": 11, "t": "Which of the following reactions obeys the law of mass action?", "ty": "mcq", "o": ["HCl(aq) + KOH(aq) = KCl(aq) + H2O(l) in an open container", "2NaNO3(s) = 2NaNO2(s) + O2(g) in an open container", "CaCl2(aq) +( NH4)2CO3(aq) = 2NH4Cl(aq) + CaCO3(s) in a closed container", "CaCO3(S) = CaO(S) + CO2(g) in a closed container"]}, {"n": 12, "t": "The following equation represents a hypothetical reaction in a closed vessel at Equilibrium: A(s) + B(l) ⇌ C(g) + D(g) , ∆H= 84.3 kJ - Which of the following factors reduces the number of moles of substance (C)?", "ty": "mcq", "o": ["Adding a small amount of substance (A) to the reaction medium", "Removing a small amount of substance (D) from the reaction medium", "Decreasing vessel volume", "Increasing temperature"]}, {"n": 14, "t": "Hydrocyanic acid (HCN) solution has a pH = 4.7 and ionization constant (Ka = 6.2 x 10⁻¹⁰). The number of moles of acid dissolved in 300 mL of the solution is:", "ty": "mcq", "o": ["0.19 b) 0.47 c) 0.64 d) 0.14"]}, {"n": 15, "t": "When 0.2 mol of hydrazine gas is placed in a closed container of a volume (1L), equilibrium is established, that represented by the following equation: N2H4 (g) ⇌ N2 (g) + 2H2 (g), ∆H < 0 At equilibrium, the hydrogen gas concentration [H2] = 0.2 M. Upon raising the temperature of the system and reaching equilibrium again, the nitrogen gas [N2] is:", "ty": "mcq", "o": ["0.08 M b) 0.20 M c) 0.30 M d) 0.10M"]}, {"n": 16, "t": "The ionic product of water (KW) increases with increasing temperature. - Which of the following occurs when the temperature of water is raised?", "ty": "mcq", "o": ["The concentration of hydrogen ions increases, the pH of the water increases, and It becomes acidic on litmus solution.", "The concentration of hydroxyl ions increases, the pOH value of the water Decreases and it becomes alkaline on litmus solution.", "The concentration of hydroxyl ions increases, the pOH value of the water Decreases and it remains neutral on litmus solution.", "The concentration of hydrogen ions increases, the pH of the water increases, and It remains neutral on litmus solution."]}, {"n": 17, "t": "Which of the following represents the reactions at the electrodes of an Electrolytic cell for a copper chloride solution using platinum electrodes? Reaction at the anodeReaction at the cathode --------- a)Cu→Cu+2+ 2e-Cl2+ 2e- →2Cl- b)2Cl- →Cl2+ 2e-Cu+2+ 2e- →Cu c)Cu+2+ 2e- →CuCl2+ 2e- →2Cl- d)Cl2+ 2e- →2Cl-Cu→Cu+2+ 2e", "ty": "mcq"}, {"n": 18, "t": "A zinc rod is placed in a container containing a molar solution of its ions at a temperature of 25°C. - Which of the following diagrams represents the equilibrium state between the oxidation reactions of zinc atoms and the reduction reactions of zinc ions in the container?", "ty": "mcq", "o": ["(b) (c) (d)"]}, {"n": 19, "t": "When a car battery (X) with an acid density of 1.19 g/cm^3 is connected in series With another car battery (Y) with an acid density of 1.29 g/cm[3 ] which of the Following occurs?", "ty": "mcq", "o": ["Pb[2+] ions are oxidized to Pb[4+] ions at the positive electrode of the battery (X), and lead atoms are oxidized to Pb[2+] ions at the positive electrode of the battery (Y). b) Pb[2+] ions are reduced to Pb atoms at the positive electrode of the battery (X), and Pb[2+] ions are reduced to Pb atoms at the positive electrode of the battery (Y). c) Pb[2+] ions are oxidized to Pb[4+] ions at the negative electrode of the battery (X), and lead atoms are oxidized to Pb[2+] ions at the positive electrode of the battery (Y). d) Pb[2+] ions are reduced to Pb atoms at the negative electrode of the battery (X), and Pb[4+] ions are reduced to Pb[2+] ions at the positive electrode of the battery (Y)."]}, {"n": 20, "t": "The following figure shows two cells containing molten of different salts. After an electric current was passed through the cells for a period of time, the increase in cathode mass of cell 1 is twice that of the cathode of cell 2 Which of the following represents the molten salts in the two cells? And the substance formed at (X, Y) electrodes? (Cu = 63.5, Al = 27, Au = 195, Mg = 24, Zn = 65, Cr = 52) Cell (1)-formed substance at (X) Cell (2)- formed substance at (Y) X Y a) AuCl3- gold is precipitated ZnCl2-Chlorine gas is evolved b) AuCl3- gold is precipitated ZnCl2- zinc is precipitated c) CrCl3-Chlorine gas is evolved AlCl3-Chlorine gas is evolved 1 2 d) CrCl3-Chromium is precipitated MgCl2-Chlorine gas is evolved Het 21- A galvanic cell consists iron and tin electrodes: Fe^0[] [ Fe][2+] (s) (aq)[ + 2e][-][, E]^0[ = + 0.409 V ] Sn[2+][] [ Sn]^0 (aq)[ + 2e][-] (s)[, E]^0[ = + 0.150 V ] Which of the following represents the anode or the cathode, and what is the emf value of the cell?", "ty": "mcq", "o": ["Iron electrode is anode and emf = +0.559 V", "Iron electrode is cathode and emf = -0.559 V", "Tin electrode is anode and emf = +0.259 V", "Tin electrode is cathode and emf = -0.259 V"]}, {"n": 22, "t": "The following reaction represents an electrochemical cell: X[o] (s)[ + 2Y][+] (aq)[→ X][2+] (aq)[+ 2Y][o] (s) Given that: X[o] (s)[ → X][2+] (aq)[ + 2e][-][, E][o ][= + 0.23 V ] 2Y[+] (s)[+ 2e][-][ → 2Y][o] (aq)[, E][o ][= + 0.8 V] Which of the following represents the type of this cell and the value of emf?", "ty": "mcq", "o": ["Electrolytic and emf = -1.03 V", "Galvanic and emf = -0.564 V", "Electrolytic and emf = +0.564 V", "Galvanic and emf = +1.03 V"]}, {"n": 23, "t": "From the following reactions: 1-CH2Br-CF3 + Cl-Cl → X 2-C2H2+H2O → ( ) → Z Which of the following represents compounds (X, Z)?", "ty": "mcq", "o": ["X: A hydrocarbon used as a safe anesthetic.", "Z: An acid used in preserving fruits and vegetables. c) X: A hydrocarbon derivative used as a safe anesthetic. d) Z: An alcohol used in pesticides. a"]}, {"n": 24, "t": "Alkylation of toluene produces two isomers (X, Y). Complete oxidation of isomer - (X) produces a compound used in the manufacture of artificial heart valves. - Which of the following represents (X, Y)?", "ty": "mcq", "o": ["(X): 1,2-Dimethyl benzene.", "(Y): 4-Methyl toluene.", "(Y): Its oxidation produces phthalic acid.", "(X): Its oxidation produces phthalic acid."]}, {"n": 25, "t": "A branched gaseous alkane can be obtained by the dry distillation of:", "ty": "mcq", "o": ["2-Methyl sodium pentanoate.", "2-Methyl sodium hexanoate.", "3-Methyl sodium butanoate.", "3-Methyl sodium pentanoate."]}, {"n": 26, "t": "Upon catalytic hydration of 3-methyl-1-butyne, compound (X) is produced. Which of the following expresses the general formula of compound (X)?", "ty": "mcq", "o": ["CnH2nO, decolorizes permanganate.", "CnH2nO, does not decolorize permanganate.", "CnH2n+2O, decolorizes permanganate.", "CnH2n+2O , does not decolorize permanganate."]}, {"n": 27, "t": "From the diagram opposite: -C2H5 Dry distillation (X) -COONa © 7s - Which of the following represents the product of chlorination of compound (X) in the presence of FeCl3?", "ty": "mcq", "o": ["Meta chloro ethyl benzene only", "Para chloro ethyl benzene only", "A mixture of ortho and para chloro ethyl benzene", "A mixture of ortho and para chloro methyl benzene"]}, {"n": 28, "t": "An aromatic liquid (X) with a boiling point of 80°C undergoes the following reactions: The reactionReaction conditionsReactionproduct --------- X + chlorineUVY X + chlorineUV/FeCl3Z - Which of the following is true?", "ty": "mcq", "o": ["(Y) Aliphatic derivative b) (Y) Aromatic hydrocarbon c) (Z) Aromatic hydrocarbon d) (Z) Aliphatic derivative Ji :"]}, {"n": 29, "t": "When an excess of NaOH solution is added to dicarboxylic acids (X & Y): In case of acid (X), a salt with the formula NaOOC–COONa is formed In case of acid (Y), a salt with the formula C6H4(COONa)2 is formed - Which of the following represents the two acids? (X & Y)?", "ty": "mcq", "o": ["X: Oxalic acid , Y: Phthalic acid", "X: Oxalic acid , Y: Benzoic acid", "X: Phthalic acid , Y: Ethanoic acid", "X: Oxalic acid , Y: Salicylic acid"]}, {"n": 30, "t": "Which of the following is the correct IUPAC name for the compound shown in The figure? COOH a) 2,3-Diethyl-2-methyl propanoic acid I b) 2-Methyl-2-ethyl pentanoic acid CH2 C CH3   c) 2-Methyl-2-propyl propanoic acid C2H5 C2H5", "ty": "mcq", "o": ["2-Ethyl-2-methyl pentanoic acid"]}, {"n": 31, "t": "By alkaline hydrolysis of compound (X), we obtain the simplest alcohol containing an ethyl group as branch. - Which of the following is the name of compound (X)?", "ty": "mcq", "o": ["3-Chloro-2-ethyl pentane", "1-Chloro-2-ethyl butane", "2-Chloro-2-ethyl propane", "2-Chloro-2-ethyl pentane"]}, {"n": 32, "t": "When 1-propanol is dehydrated then water is added to the resulting compound In the presence of a catalyst, compound (X) is produced. - Which of the following represents compound (X)?", "ty": "mcq", "o": ["It decolorizes bromine dissolved in carbon tetrachloride and 1,2-dibromopropane is formed b) It oxidizes by acidified potassium permanganate and propanoic acid is formed c) It decolorizes acidified potassium permanganate and propanone is formed d) It oxidizes by hydrogen peroxide to a dihydric alcohol"]}, {"n": 33, "t": "The following diagram illustrates some reactions of iron and its compounds:", "ty": "mcq", "o": ["Cl2 > (B) —— NaOH (aq) Reddish brown ppt. nal Δ (C) (an CO/280[o] C (D) - From the previous diagram, which of the following is correct?", "Replacing chlorine with dilute hydrochloric acid gives the same product as (B). b) Both (A) and (D) react with concentrated sulfuric acid to give a mixture of iron (II) and iron (III) sulphate.", "Compounds (B) and (C) have the same magnetic moment and (C) can be reduced to (A) by hydrogen at 500°C. d) Compound (C) reacts with dilute hydrochloric acid to give compound (B). iy P"]}, {"n": 34, "t": "Each of the following represents a group of transition and non-transition elements That form different types of alloys. (X): non-transition element from the third period, Group IIIA (Y): non-transition element from the second period, Group IVA - (A): transition element used as a catalyst in the hydrogenation of oils (B): transition element used as a catalyst in the Fischer-Tropsh process - Which of the following represents the type of alloy formed from some of the Above elements? An alloy of<br>(Y) and (B) whose<br>components can<br>be separated by<br>dilute acidAn alloy of<br>(Y) and (B) whose<br>components cannot<br>be separated by<br>dilute acidAn alloy of<br>(X & A)an alloy of<br>(Y, A & B) --------------- a)intermetallicInterstitialSubstitutionalInterstitial &<br>intermetallic b)InterstitialSubstitutionalintermetallicSubstitutional &<br>Interstitial c)InterstitialintermetallicintermetallicSubstitutional &<br>Interstitial d)SubstitutionalintermetallicInterstitialSubstitutional &<br>Interstitial", "ty": "mcq"}, {"n": 35, "t": "When 45 g of a pure sample of hydrated barium chloride (BaCl2.2H2O) is dissolved in 500 mL of distilled water, 84.2 mL of the resulting solution is required to precipitate all the sulphate anions produced from dissolving 10 g of hydrated sodium sulphate (Na2SO4.XH2O) in water. (BaCl2.2H2O=244 g/mol - BaCl2=208g/mol - Na2SO4=142g/mol) Which of the following expresses the chemical formula of hydrated sodium sulphate?", "ty": "mcq", "o": ["Na2SO4.5H2O", "Na2SO4.7H2O", "Na2SO4.10H2O", "Na2SO4.8H2O"]}, {"n": 36, "t": "Saturated solution of a sparingly soluble salt (A) is in water. Its saturated solution with a concentration of (1 x 10[-4] mol/L). Given that Ksp of this salt is (1.08 x 10[-18] ) -Which of the following represents the chemical formula of salt (A)?", "ty": "mcq", "o": ["X2Y3", "XY3", "X2Y", "XY2"]}, {"n": 37, "t": "Two solutions of two different acids (X) and (Y), each monoprotic: - (X): Concentration 0.1 M and ionization constant Ka = 1.8 x 10[-5] (Y): Concentration 0.1 M and ionization constant Ka = 5.1 x 10[-4] - Which of the following describes the properties of each of the two acids (X) and (Y)? a) (X) conducts electricity more efficiently and has a lower pH value than (Y). b) (Y) conducts electricity more efficiently and has a higher pH value than (X). c) (X) conducts electricity less efficiently and has a lower pH value than (Y).", "ty": "mcq", "o": ["(Y) conducts electricity more efficiently and has a lower pH value than (X)."]}, {"n": 38, "t": "The opposite figure illustrates one method of protecting iron pipes from rust. - Which of the following represents metal (X)?", "ty": "mcq", "o": ["It does not replace hydrogen ions in acids, so the electron direction is (2).", "It reduces iron ions in its solution, so the electron direction is (1).", "Its ions are reduced by iron atoms, so the electron direction is (1).", "Its oxidation potential is higher than iron, so the electron direction is (2)."]}, {"n": 39, "t": "When a spoon is coated with gold using a cell containing an electrolyte solution of AuCl3, 0.5 mol of electrons pass into the solution. (Au=197g/mol) Which of the following represents the changes that occur during this electrolysis? Increase in the mass of the spoonthe concentration ofgold ions in the solution --------- a)49.01<br>gdecreases b)32.8gincreases c)32.8gremains constant d)10.94gremains constant", "ty": "mcq"}, {"n": 40, "t": "Glycolic acid (hydroxy ethanoic acid), with the formula HO-CH2COOH, the following experiments were performed on it: Experiment (A): Reaction with methanol Experiment (B): Reaction with acetic acid Which of the following represents the chemical formula of the product of experiments (A) and (B)? The result of experiment (A) The result of experiment (B) a) HO-CH2-COOCH3 CH3COO-CH2–COOH b) CH3-COO-CH2COOH HO-CH2-COOCH3 c) HO-CH2COOH CH3-COO-CH2-COO-CH3 d) CH3O-CH2COOH HO-CH2COO-CH3", "ty": "mcq"}, {"n": 41, "t": "(A, B and C) Three organic compounds have the following molecular formulas: (A): C3H6O3 (B): C2H4O2 (C): C4H8O2 The ammonolysis of compound (C) gives the amide of compound (B). Each of the following represents the reactions of compounds (A, B and C) except:", "ty": "mcq", "o": ["(A) and (B) react with metal carbonates, while (C) does not.", "(A) does not react with (B) but react with alcohols.", "(A) and (B) react with active metals, while (C) reacts with metal hydroxides upon heating. d) One of the isomers of (C) reacts with active metals, their hydroxides, carbonates, and bicarbonates."]}, {"n": 42, "t": "(M) is an organic compound that can be obtained by the following steps in order: - (1) Neutralizing acid (X) with caustic soda, then heating the product strongly in the Presence of soda lime to prepare gas (Y) (2) Chlorination of gas (Y) at 400°C to obtain (Z) (3) Reacting (Z) with the simplest aromatic hydrocarbon to obtain (W) - (4) Oxidizing (W) in the presence of V2O5 to obtain (M) Which of the following represents organic compounds (X, Y, Z, W, M)? <br>", "ty": "mcq"}, {"n": 44, "t": "Which of the following represents the correct order of chemical reactions required to obtain propane from a compound with the chemical formulaCH3CH2COOCH2CH2CH3? → → a) Alkaline hydrolysis Dry distillation Catalytic hydrogenation → → b) Alkaline hydrolysis Dehydration Catalytic hydrogenation", "ty": "mcq", "o": ["Acidic hydrolysis → Oxidation → Dehydration d) Acidic hydrolysis → Reduction → Dehydration WN : ]"]}, {"n": 45, "t": "The opposite figure shows an experiment to detect the anion of salt (X) and the cation (Z). Study the figure well and then answer the following questions: ( 1) Write the chemical formula for each of:", "ty": "essay"}, {"n": 46, "t": "The following table shows the chemical formulas of organic compounds: <br> Write the IUPAC name for each of the following:", "ty": "essay"}]}, {"id": "model7", "name": "Ninth Guiding Model (Chemistry 2026)", "tag": "9", "icon": "🔮", "qs": [{"n": 1, "t": "(X, Y and Z) are three transition elements used in the medical field. (X): One of its alloys is used in surgical instruments. (Y): It is used in artificial joints. (Z): One of its isotopes is used in the diagnosis and treatment of malignant tumors. - Which of the following represents the elements (X, Y and Z)? (X)(Y)(Z) ------------ a)ChromiumCobaltCadmium b)IronTitaniumCobalt c)CobaltVanadiumChromium d)IronTitaniumVanadium", "ty": "mcq"}, {"n": 2, "t": "The following table shows the electronic configuration of the cations of two elements, (X) and(Y) The cationThe electron configuration ------ X2+18Ar, 3d4 Y2+18Ar, 3d2 -Which of the following is correct?", "ty": "mcq", "o": ["It is difficult to oxidize X[6+] to X[7+]", "It is difficult to oxidize Y[2+] to Y[4+]", "It is easy to reduce X[6+] to X[2+]", "It is easy to reduce Y[4+] to Y[3+]"]}, {"n": 3, "t": "(X, Y, Z) three transition elements at the end of the first transition series. Arranged according to atomic mass (Y < Z < X) -Which of the following represents the correct order of ions of these elements according to the magnetic moment?", "ty": "mcq", "o": ["Z[2+] > Y[2+] > X[2+]", "X[2+] > Y[2+] > Z[2+]", "Z[2+] > X[2+] > Y[2+]", "X[2+] > Z[2+] > Y[2+]"]}, {"n": 4, "t": "Which of the following represent the correct order of processes required", "ty": "mcq", "o": ["Concentration – Roasting – Reduction –melting with chromium.", "Concentration – reduction – roasting –melting with manganese", "Sintering – roasting – addition of carbon and chromium – reduction.", "Sintering – roasting – reduction – addition of carbon and chromium"]}, {"n": 5, "t": "A transition element (X) with the lowest oxidation state in the first transition series, when chemically combined with another metal to form an alloy. - Which of the following is true regarding the type of alloy and the use of element X?", "ty": "mcq", "o": ["Substitutional alloy, and (X) is used in the manufacture of soft drink cans.", "Substitutional alloy, and (X) is used in the manufacture of railway tracks.", "Intermetallic alloy, and (X) is used in the manufacture of MiG fighter jets.", "Intermetallic alloy, and (X) is used in the manufacture of coins."]}, {"n": 6, "t": "Which of the following is not a product of heating magnesium bicarbonate solution?", "ty": "mcq", "o": ["Another salt of the same acid", "A gas that oxidizes in air", "A compound sparingly soluble in water", "A precipitate that dissolves in dilute acids"]}, {"n": 7, "t": "A solution containing (Ag[+] , Cu[2+] , Pb[2+] , Ca[2+] ) cations . - -Which of the following represents the correct order of steps required to obtain a Solution containing only the copper cation?", "ty": "mcq", "o": ["Add hydrochloric acid – filtration – add hydrogen sulphide gas – filtration", "Add hydrogen sulphide gas – filtration – add hydrochloric acid – filtration", "Add sulphuric acid – filtration – add sodium sulphide solution – filtration", "Add sodium chloride solution –filtration– add magnesium sulphate solution–filtration"]}, {"n": 8, "t": "When adding hot, concentrated sulphuric acid salt (X), fumes are released that Turns a paper wet with starch blue. - -When barium chloride solution is added to salt solution (Y), a white precipitate is Formed that dissolves in dilute HCl. -Which of the following represents the product of adding silver nitrate solution to Solutions of both (X and Y)? In the case of salt solution(X)In the case of salt solution(Y) --------- a)A yellow precipitate forms that<br>dissolves in ammonia solutionA yellow precipitate forms that does not<br>dissolve in ammonia solution b)A yellow precipitate forms that does<br>not dissolve in ammonia solutionA yellow precipitate forms that<br>dissolves in ammonia solution c)A yellowish white precipitate forms.A yellow precipitate forms that does not<br>dissolve in ammonia solution d) A white precipitate forms that dissolvesd) A white precipitate forms that dissolves<br>in ammonia solutionA yellow precipitate forms that<br>dissolves in ammonia solution ]", "ty": "mcq"}, {"n": 9, "t": "When 0.2 mol of the anhydrous salt XCl2 combines with 7.2 g of water, a hydrated salt is formed with the chemical formula XCl2·nH2O (H=1, O=16). - Which of the following represents the value of (n)?", "ty": "mcq", "o": ["2 b) 4 c) 6 d) 8"]}, {"n": 10, "t": "When titrating an alkaline solution of concentration (M) with an acid of Concentration (0.5 M), upon reaching the equivalence point, it was found that The volume of acid consumed is equal to the volume of the alkaline solution. - Which of the following represents the acid and the alkaline solution?", "ty": "mcq", "o": ["Hydrochloric acid and calcium hydroxide", "Sulphuric acid and potassium hydroxide", "Hydrochloric acid and potassium hydroxide", "Sulphuric acid and calcium hydroxide."]}, {"n": 11, "t": "When equal masses of zinc react with an excess of hydrochloric acid - Which of the following represents the reaction that produces the greatest volume Of hydrogen gas in the shortest time?", "ty": "mcq", "o": ["A zinc strip with 0.1 M acid at 25°C", "Zinc powder with 1 M acid at 50°C", "Zinc powder with 0.1 M acid at 25°C", "A piece of zinc with 1 M acid at 50°C"]}, {"n": 12, "t": "The following equilibrium reaction in a closed vessel: - 2A₂X(g) + XY₂(g) ⇌ 3X(s) + 2A₂Y(g) , ΔH < 0 - (Yellow) -Which of the following is true?", "ty": "mcq", "o": ["Adding more of substance (X) shifts the equilibrium backward", "When the container is placed in a cooling mixture, the partial pressure of Gas XY2 increases", "The mass of the precipitate increases by increasing pressure", "The volume of A2Y decreases as the volume of the container decreases"]}, {"n": 13, "t": "Which of the following diagrams represents the relationship between the concentrations of products and reactants when a piece of magnesium metal is placed in a dilute sulfuric acid solution? (C) Concentration Concentration Concentration Concentration Cece {- Ht PTT] ib asstenctes Time ‘ Time , Time ; Time  aay assatante aa eH (a) (b) (c) (d)[pinill][dga>] I  2026-2025 pial! aslely pula aupill djl[jl][Abgano]", "ty": "mcq"}, {"n": 14, "t": "When a solution of a weak monoprotic acid is diluted by adding water, doubling its volume: Which of the following happens to the value of α and the pH?", "ty": "mcq", "o": ["The value of α decrease and becomes (1/1.414 α), and the pH of the solution decreases.", "The value of α increase and becomes (1.414 α), and the pH of the solution increases.", "The value of α doubles, and the pH of the solution increases.", "The value of α is halved, and the pH of the solution decreases."]}, {"n": 15, "t": "If the Ksp value of AgCl salt is 1.6 x 10⁻¹⁰, then the mass of the salt dissolved in 50 mL of water is: (AgCl = 143.5 g/mol)", "ty": "mcq", "o": ["1.6 x 10[-10] g b) 0.905 x 10[-4] g", "1.26 x 10[-5] g d) 1.81 x 10[-4] g"]}, {"n": 16, "t": "In the following equilibrium reaction: 2NO + O₂ ⇌ 2NO₂ - Which of the following describes what happens in this case?", "ty": "mcq", "o": ["NO and O2 react in equal mass proportions.", "The rate of formation of NO2 is twice the rate of consumption of O₂.", "The rate of consumption of O2 is equal to the rate of formation of NO2.", "At equilibrium, the volumes of the reactants and products are equal."]}, {"n": 17, "t": "The figure opposite shows a galvanic cell consisting of two electrodes. (X, Y): <br>", "ty": "mcq", "o": ["Br2 + 2e[-] → 2Br[-]", "Cu[2+] (aq)[→][ Cu] (s)[ - 2e][-]", "4OH[-] (aq)[→][ O] 2(g)[ + 2H] 2[O] (l)[ + 4e][-]", "2H2O(l) + 2e[-] → H2(g) + 4OH[-] (aq)"]}, {"n": 19, "t": "A galvanic cell (X) consists of two electrodes (A, B), and electrons flow through the external wire from (B) to (A). -An electrochemical cell (Y) consisting of the same electrodes undergoes the following reaction: A(s) + B²⁺(aq) → A²⁺(aq) + B(s) -Which of the following options describes cell (Y)?", "ty": "mcq", "o": ["Galvanic with positive (emf) , electrode (A) is negative and acts as an anode", "Galvanic with a positive (emf) , electrode (B) is positive and acts as a cathode", "Electrolytic with a negative (emf) , electrode (A) is negative and acts as an anode", "Electrolytic with a negative (emf) , electrode (B) is negative and acts as a cathode"]}, {"n": 20, "t": "The opposite diagram shows a water tank connected to a pipe and tap made of three metals (X, Y, Z), with reduction potentials as follows: (X = -0.40 V, Y = +0.3 V, Z = -2.71 V). The pipe acts as a scarifying electrode for both the tank and the tap, and the material of the tap provides cathodic protection for the tank under normal conditions. -Which of the following represents the metals from which each is made? TankTapPipe  ------------ a)YXZ b)XYZ c)XZY d)ZYX", "ty": "mcq"}, {"n": 21, "t": "A copper rod containing iron and silver impurities was purified using electrolysis. -Which of the following represents the change in electrode masses after a period of time of the passage of electric current?", "ty": "mcq", "o": ["The decrease in anode mass equals the increase in cathode mass.", "The decrease in anode mass is less than the increase in cathode mass.", "The decrease in anode mass is greater than the increase in cathode mass.", "The decrease in anode mass equals the mass of the undissolved impurities."]}, {"n": 22, "t": "Which of the following is correct for both a fuel cell and a mercury cell?", "ty": "mcq", "o": ["Both are cells that convert stored chemical energy into electrical energy.", "Reduction occurs in both at the negative electrode.", "The components of both cells are consumed during operation.", "Both are alkaline cells, and the electrolyte concentration does not change during operation."]}, {"n": 23, "t": "(X, Y) are two salts of organic acids with the following chemical formulas: X: (HCOO)2Ca Y: (COO)2Ca Which of the following choices expresses the number of moles of organic acid and base required to prepare one mole of each of the two salts (X and Y)?", "ty": "mcq", "o": ["X: 1 mol of oxalic acid and 2 mol of calcium hydroxide", "X: 2 mol of formic acid and 2 mol of calcium hydroxide", "X: 2 mol of oxalic acid and 2 mol of calcium hydroxide", "X: 2 mol of formic acid and 1 mol of calcium hydroxide"]}, {"n": 24, "t": "Which of the following represents a compound that don’t decolorizes bromine Dissolved in carbon tetrachloride?", "ty": "mcq", "o": ["The product of dropping of water on calcium carbide", "The product of the catalytic reforming of hexane", "The product of adding concentrated sulphuric acid to propanol at 180°C", "The product of strong heating followed by rapid cooling of the dry Distillation product of sodium acetate"]}, {"n": 25, "t": "Which of the following is the IUPAC name of the corresponding compound?", "ty": "mcq", "o": ["3-propyl-2-phenyl-2-butene", "2,3-dimethyl-4-phenyl-3-pentene", "4,3-dimethyl-2-phenyl-2-pentene", "2-phenyl-3-methyl-2-hexene"]}, {"n": 26, "t": "Upon hydrolysis in an acidic medium for propyl benzoate an acidic compound (X) is produced. When compound (X) reacts with the simplest aliphatic alcohol, compound (Y) is produced. Which of the following is the isomer of compound (Y)?", "ty": "mcq", "o": ["Phenyl formate", "Butyl formate", "Phenyl acetate", "Phenyl benzoate"]}, {"n": 27, "t": "From the following diagram: (X) : C3H5Cl Hydrogenation Y Alkaline hydrolysis Z -Which of the following represents the number of isomers for each formula of (X,Y,Z)? Number of Isomers of<br>(X)Number of Isomers of<br>(Y)Number of Isomers of<br>(Z) ------------ (a)333 (b)422 (C)222 (d)432", "ty": "mcq"}, {"n": 28, "t": "(X): A primary alcohol with one alcoholic isomer - (Y): A hydrocarbon produced by the dehydration of compound (X) (Z): An isomer of compound (Y) - Which of the following represents the properties of compound (Z)?", "ty": "mcq", "o": ["More stable than normal propane", "Burns faster than cyclic butane", "Burns slower than normal hexane", "Less reactive than cyclic pentane"]}, {"n": 29, "t": "Two organic compounds (X, Y), compound (X) has the formula C2H6O2, while compound (Y) has the formula C2H4O2. Which of the following is correct? a) Both react with sodium hydroxide", "ty": "mcq", "o": ["Both react with halogenated acids", "Both are oxidized by potassium permanganate solution", "When they react together, an ester is formed"]}, {"n": 30, "t": "Two organic compounds (A, B) are open-chain hydrocarbons. - Burning one mole of compound (A) produces 3 moles of CO2 - Burning one mole of compound (B) produces 3 moles of H2O If you know that (A) undergoes a substitution reaction while (B) undergoes an addition reactions in a one step, then:", "ty": "mcq", "o": ["(A) is a gaseous alkane, (B) is a liquid alkane b) (A) is a liquid alkane, (B) is a liquid alkene c) (A) is a gaseous alkane, (B) is a liquid alkene d) (A) is a gaseous alkene, (B) is a liquid alkyne"]}, {"n": 31, "t": "Compounds (A) and (B) are prepared by nitration, where: - (A): is prepared by nitration of an aromatic hydrocarbon.", "ty": "mcq", "o": [": is prepared by nitration of an aromatic hydrocarbon derivative. Which of the following represents compounds (A) and (B)? (a) (A) : Meta-nitro-toluene , (B): Meta-nitro benzoic acid (b) (A) : 4-Nitro-toluene , (B) : 3-Nitro benzoic acid (C) (A) : Ortho-nitro-toluene , (B) : 2-nitro benzoic acid", "(A) : 2-nitrotoluene , (B): para-nitro benzoic acid"]}, {"n": 32, "t": "Three organic compounds (X, Y and Z) have the molecular formulas: (X): C2F4 (Y): C2H4O2 (Z): CCl2F2 -Which of the following correctly represents each compound? Compound(X)Compound(Y)Compound(Z) ------------ a)Alkene derivative: Used as<br>a raw material in the lining<br>of cookingutensils.Aliphatic acid: Used in the<br>manufacture of synthetic<br>silk.Alkane derivative: Used as<br>a Cooling agent. b)Alkane derivative: Used in<br>surgical threads.Aromatic acid: Used as a<br>foodpreservative.Alkene derivative: Used as<br>a cleaner of electric sets. c) Alkane derivative: Used asc) Alkane derivative: Used as<br>a raw material in the lining<br>of cookingutensils.Aliphatic ester: Used as a<br>Flavor and Oduor<br>enhancersAlkane derivative: Used as<br>rushed substance for<br>liquids. d)Alkene derivative: Used in<br>the manufacture of<br>plastics.Aliphatic acid: Used in the<br>manufacture of<br>explosives.Alkene derivative: Used as<br>an insecticide.", "ty": "mcq"}, {"n": 33, "t": "(A, B) are iron (II) salts and the thermal decomposition of each in absence Of air give an iron oxide, as shown by the following equations: A → C + D + E (s) (s) (g) (g) B → G + L + M (s) (s) (g) (g) The gas (D) is a reducing agent during extraction of iron -Which of the following represents A, B, C, and G? A<br>B<br>CG --------------- a)<br>(COO)2Fe<br>FeSO4<br>FeOFe2O3 b)<br><br>Fe(OH)3<br><br><br>FeCO3<br><br><br>Fe2O3<br>FeO<br> c)<br>(COO)2Fe<br>FeSO4<br>Fe2O3FeO d)<br><br>FeCO3<br>Fe(OH)3<br> <br>2026-2025,.iallolelgFeO<br>olelgauleloauJlFe2O3<br>Syljg)abbgaropir! <br>", "ty": "mcq"}, {"n": 34, "t": "The following diagram represents the reactions of iron compounds: <br> Which of the following represents the percentage of potassium chloride in the mixture? (K=39, C=12, O=16, Mg=24)", "ty": "mcq", "o": ["35.44%", "68.45%", "31.55%", "40.91%"]}, {"n": 36, "t": "The following equation represents the reaction that occurs between nitric Oxide and hydrogen under certain conditions: 2NO (g) + 2H2 (g) ⇌ N2(g) + 2H2O(v) -If 0.1 mol of nitric oxide is mixed with 0.05 mol of hydrogen in a 1 L closed container at a certain temperature. At equilibrium the number of moles of (NO) in the container is found to be 0.062 mol. Which of the following represents the value of Kc for this reaction at the same temperature?", "ty": "mcq", "o": ["1.86", "3.13 c) 49.56 d) 94.62"]}, {"n": 37, "t": "The opposite figure shows the energy diagram for energy a reversible reaction at equilibrium: - Which of the following graphs represents the Relationship between Kc and temperature for this reaction? Kc Kc (a) (b) Reaction direction temperature temperature Kc (c) Kc (d) temperature temperature 38- A metal is connected to the cathode of an electrolytic cell for plating with 2- chromium metal using an acidic electrolyte solution containing Cr2O7 ions. (If you know that oxygen gas is released at the anode of this cell) -Which of the following represents the number of moles of gas released when the mass of the metal to be plated is increased by 151g? [Cr=52, O=16] a) 4.36 b) 0.726 c) 17.4 d) 3.86 39- The following table shows the standard electrical potentials of four elements: The element A[2+] + 2e[-] → A B → B[2+] + 2e[-] C[2+] + 2e[-] → C D → D[2+] + 2e[-] E[o] -2.71 V +0.40 V +0.80 V -1.20 V Which of the following represents the number of galvanic cells that can be formed from these elements, and the highest value of emf that can be obtained? a) 4 cells, emf = 1.60 V b) 6 cells, emf = 3.91 V c) 6 cells, emf = 3.11 V d) 12 cells, emf = 3.51 V <br>", "ty": "mcq"}, {"n": 40, "t": "From the following diagram: <br> - Which of the following is correct?", "ty": "mcq", "o": ["(Y) Ortho methyl sodium benzoate, (X) Ortho methyl phenol, (W) Cyclohexane. b) (Y) Para methyl sodium benzoate, (Z) Methyl benzene, (W) Cyclohexane. c) (X) Para methyl phenol, (Z) Methyl benzene, (W) Methyl cyclohexane. d) (X) Phenol, (Y) Ortho methyl sodium benzoate, (W) Methyl cyclohexane. 41- From the following diagram: Y HBr H2C=CH2 Br2 X ei Ones Te -When an abundance of KOH is added to both Y and X, which of the following represents the compound produced in each case?", "In case of X: a secondary alcohol is produced, used in thermometers.", "In case of Y: a secondary alcohol is produced, used as a sterilizing of mouth &tooth. c) In case of X: a primary alcohol is produced, which is a monomer of PEG. d) In case of Y: a primary alcohol is produced, used in pen inks."]}, {"n": 42, "t": "From the following diagram: X NaOH Y Cl2 Z HCl H2C=CH2 CaO/∆ UV KOH ON Tg Ta W Which of the following is correct?   a) X : is sodium ethanoate , W: is a secondary alcohol.", "ty": "mcq", "o": ["X : is sodium propanoate , W: is a primary alcohol.", "X : is sodium ethanoate , W: is a primary alcohol.", "X : is sodium propanoate , W: is a secondary alcohol."]}, {"n": 43, "t": "The following reaction took place under suitable conditions: Which of the following is correct? x + H2O C3H8O a) Both (Y) and C3H8O contain a secondary carbinol group. H2SO4 b) Both (Y) and C3H8O contain a primary carbinol group. H2O2", "ty": "mcq", "o": ["The carbinol group in C3H8O is primary, while in (Y) it is secondary.", "The carbinol group in C3H8O is secondary, while in (Y) it is tertiary. Y"]}, {"n": 44, "t": "You have the following organic compounds: - (X: C7H8) (Y: C6H6O) (Z: C7H6O2) (L: C6H14O6) - -The compounds that react with NaOH are: 2-Salt (Y): …………………………………...", "ty": "mcq", "o": ["X and Y only b) Y and Z only c) Y and L only d) Y, Z, and L only Essay Questions: 45- The following diagram represents the chemical reactions of some salts:"]}]}];
+const COLORS = ['#f59e0b','#14b8a6','#a78bfa','#f472b6','#34d399','#38bdf8','#fb7185'];
+let solvedCount = 0;
+const cache = {};
 
-function searchQuestions(){
+/* ─── UTILS ─── */
+function esc(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function rgb(hex){ return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)).join(','); }
 
-    let input =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase();
+/* ─── SIDEBAR ─── */
+function buildSidebar(){
+  const el = document.getElementById('sbModels');
+  el.innerHTML = EXAM_DATA.map((m,i)=>{
+    const c = COLORS[i%COLORS.length], r=rgb(c);
+    return `<a href="#${m.id}" class="sb-item" style="--c:${c}" 
+       onclick="closeSidebarMobile();setActive(this)">
+      <span class="sb-icon">${m.icon}</span>
+      <div class="sb-info">
+        <div class="sb-name">${m.name.replace(' (Chemistry 2026)','')}</div>
+        <div class="sb-count">${m.qs.length} questions</div>
+      </div>
+      <span class="sb-badge" style="color:${c}">${m.tag}</span>
+    </a>`;
+  }).join('');
+}
+function setActive(el){
+  document.querySelectorAll('.sb-item').forEach(e=>e.classList.remove('active'));
+  el.classList.add('active');
+}
+let sidebarOpen=false;
+function toggleSidebar(){
+  sidebarOpen=!sidebarOpen;
+  document.getElementById('sidebar').classList.toggle('open',sidebarOpen);
+  document.getElementById('sidebarBackdrop').classList.toggle('open',sidebarOpen);
+  document.body.style.overflow=sidebarOpen&&window.innerWidth<=768?'hidden':'';
+}
+function closeSidebarMobile(){ if(window.innerWidth<=768){ sidebarOpen=false; document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarBackdrop').classList.remove('open'); document.body.style.overflow=''; } }
 
-    let questions =
-        document.querySelectorAll(".searchable");
-
-    questions.forEach(q=>{
-
-        if(q.innerText.toLowerCase().includes(input)){
-            q.style.display="block";
-        }
-        else{
-            q.style.display="none";
-        }
-
-    });
-
+/* ─── BUILD INDEX ─── */
+function buildIndex(){
+  return `<section id="index">
+  <div class="hero">
+    <h1>Chemistry 2026 — Solutions Guide</h1>
+    <p>Complete solutions for 7 Egyptian Grade 12 Chemistry exam models. Tap any question to get a detailed AI-powered step-by-step solution.</p>
+    <div class="models-grid">
+      ${EXAM_DATA.map((m,i)=>{
+        const c=COLORS[i%COLORS.length];
+        const mcq=m.qs.filter(q=>q.ty==='mcq').length;
+        const ess=m.qs.filter(q=>q.ty==='essay').length;
+        return `<button class="mc" style="--c:${c}" onclick="scrollTo('#${m.id}')">
+          <span class="mc-icon">${m.icon}</span>
+          <div class="mc-lbl">${m.name.replace(' (Chemistry 2026)','')}</div>
+          <div class="mc-tag">Model ${m.tag}</div>
+          <div class="mc-stats"><span>${mcq}</span> MCQ · <span style="color:var(--teal)">${ess}</span> Essay</div>
+        </button>`;
+      }).join('')}
+    </div>
+  </div>
+  </section>`;
 }
 
-</script>
+/* ─── FORMAT SOLUTION TEXT ─── */
+function fmt(text){
+  if(!text)return'';
+  let t=text
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/#{1,3}\s*(.*)/g,'<strong>$1</strong>')
+    .replace(/✅(.*?)(?=
+|$)/g,'<span class="ans">✅$1</span>')
+    .replace(/❌(.*?)(?=
+|$)/g,'<span class="wrong">❌$1</span>')
+    .replace(/`([^`]+)`/g,'<span class="chem">$1</span>')
+    .replace(/
 
+/g,'<br><br>')
+    .replace(/
+/g,'<br>');
+  return `<div class="sol-raw">${t}</div>`;
+}
+
+/* ─── BUILD MODEL SECTION ─── */
+function buildSection(m, ci){
+  const c=COLORS[ci%COLORS.length], r=rgb(c);
+  const mcq=m.qs.filter(q=>q.ty==='mcq').length;
+  const ess=m.qs.filter(q=>q.ty==='essay').length;
+  const sn=m.name.replace(' (Chemistry 2026)','');
+  
+  const qs=m.qs.map(q=>{
+    const isE=q.ty==='essay';
+    const key=`${m.id}_${q.n}`;
+    const bc=isE?'var(--teal-d)':`rgba(${r},.12)`;
+    const bb=isE?'rgba(15,212,192,.2)':`rgba(${r},.25)`;
+    const bt=isE?'var(--teal)':c;
+    
+    const optsHtml=(!isE&&q.o&&q.o.length>=2)?
+      `<div class="qopts">${q.o.slice(0,4).map((o,i)=>o?`<div class="qopt"><span class="opt-l">${'abcd'[i]}</span><span>${esc(o)}</span></div>`:'').join('')}</div>`:'';
+    
+    const qt=q.t.replace(/\/g,'\\').replace(/'/g,"\'").replace(/`/g,'\`');
+    const op=JSON.stringify(q.o||[]).replace(/\/g,'\\').replace(/'/g,"\'");
+    
+    return `<div class="qitem${isE?' essay':''}" id="q-${key}" data-s="${esc(q.t.toLowerCase())}">
+      <div class="qhdr" onclick="toggle('${key}')">
+        <div class="qnum${isE?' e':''}">${q.n}</div>
+        <div class="qbody">
+          <span class="qtag ${isE?'qtag-e':'qtag-m'}">${isE?'Essay':'MCQ'}</span>
+          <div class="qtext">${esc(q.t)}</div>
+          ${optsHtml}
+          <div class="qactions">
+            <button class="solve-btn" style="--bc:${bc};--bb:${bb};--bt:${bt}"
+              id="btn-${key}"
+              onclick="event.stopPropagation();solve('${m.id}','${q.n}','${qt}','${op}','${c}')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              Get AI Solution
+            </button>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation();toggle('${key}')">▼</button>
+      </div>
+      <div class="sol-panel" id="sol-${key}"></div>
+    </div>`;
+  }).join('');
+  
+  return `<section id="${m.id}" class="msec">
+    <div class="msec-hdr" style="--c:${c}">
+      <span class="msec-icon">${m.icon}</span>
+      <div class="msec-titles">
+        <div class="msec-title">${sn}</div>
+        <div class="msec-sub">Egyptian Thanaweya Amma · 2025–2026</div>
+      </div>
+      <div class="msec-badges">
+        <span class="bdg bdg-m">${mcq} MCQ</span>
+        <span class="bdg bdg-e">${ess} Essay</span>
+      </div>
+    </div>
+    <div class="qlist">${qs}</div>
+  </section>`;
+}
+
+/* ─── BUILD EVERYTHING ─── */
+function buildAll(){
+  const main=document.getElementById('main');
+  main.innerHTML = buildIndex() + EXAM_DATA.map((m,i)=>buildSection(m,i)).join('');
+}
+
+/* ─── TOGGLE QUESTION ─── */
+function toggle(key){
+  document.getElementById('sol-'+key)?.classList.toggle('open');
+}
+
+/* ─── SOLVE VIA CLAUDE API ─── */
+async function solve(modelId, qNum, qText, optsJson, color){
+  const key=`${modelId}_${qNum}`;
+  const panel=document.getElementById('sol-'+key);
+  const btn=document.getElementById('btn-'+key);
+  if(!panel)return;
+  panel.classList.add('open');
+  if(cache[key]){panel.innerHTML=`<div class="sol-body">${fmt(cache[key])}</div>`;return;}
+  
+  panel.innerHTML=`<div class="sol-loading"><div class="spin"></div><span>Generating solution…</span></div>`;
+  if(btn)btn.disabled=true;
+  
+  let opts=[];
+  try{opts=JSON.parse(optsJson);}catch(e){}
+  const optLines=opts.filter(o=>o&&o.trim()).map((o,i)=>`(${'abcd'[i]}) ${o}`).join('\n');
+  
+  const prompt=`You are an expert Egyptian chemistry teacher for Thanaweya Amma Grade 12 Chemistry 2026 curriculum.
+
+Solve this exam question clearly and educationally:
+
+QUESTION: ${qText}
+${optLines?'OPTIONS:\n'+optLines:''}
+
+Format your response EXACTLY like this:
+✅ CORRECT ANSWER: [state the letter a/b/c/d and what it says, or for essay the full answer]
+
+📐 STEP-BY-STEP SOLUTION:
+[Detailed explanation with all steps, equations, calculations]
+
+⚗️ KEY CONCEPTS:
+[Important chemistry principles and formulas used]
+${optLines?'\n❌ WHY OTHER OPTIONS ARE WRONG:\n[Briefly explain each wrong option]':''}
+
+Use proper chemical formulas. Be concise but thorough.`;
+
+  try{
+    if(!navigator.onLine){throw new Error('You are offline. Connect to the internet to get AI solutions.');}
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await res.json();
+    if(data.content&&data.content.length>0){
+      const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+      cache[key]=text;
+      panel.innerHTML=`<div class="sol-body">${fmt(text)}</div>`;
+      solvedCount++;
+      document.getElementById('solvedPill').innerHTML=`<strong>${solvedCount}</strong> solved`;
+      document.getElementById('bnav-solved-txt').textContent=`${solvedCount} solved`;
+    } else {
+      throw new Error(data.error?.message||'No content returned');
+    }
+  } catch(err){
+    panel.innerHTML=`<div class="sol-err">⚠️ ${esc(err.message)}<br><button onclick="solve('${modelId}','${qNum}',\`${qText.replace(/`/g,"\`")}\`,'${optsJson.replace(/'/g,"\'")}','${color}')">Retry</button></div>`;
+  }
+  if(btn)btn.disabled=false;
+}
+
+/* ─── SEARCH ─── */
+function handleSearch(q){
+  q=q.toLowerCase().trim();
+  document.querySelectorAll('.qitem').forEach(el=>{
+    el.style.display=(!q||el.dataset.s.includes(q))?'':'none';
+  });
+  document.querySelectorAll('.msec').forEach(sec=>{
+    sec.style.display=(!q||sec.querySelectorAll('.qitem:not([style*="display: none"])').length)?'':'none';
+  });
+  document.getElementById('index').style.display=q?'none':'';
+}
+
+/* ─── NAV HELPERS ─── */
+function scrollTo(sel){ document.querySelector(sel)?.scrollIntoView({behavior:'smooth'}); }
+function scrollToHome(){ document.getElementById('index')?.scrollIntoView({behavior:'smooth'}); setActiveNav('bnav-home'); }
+function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+function focusSearch(){ document.getElementById('searchInput').focus(); setActiveNav('bnav-search'); }
+function setActiveNav(id){ document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active')); document.getElementById(id)?.classList.add('active'); }
+
+/* ─── SERVICE WORKER (offline) ─── */
+const SW_CODE = `
+const CACHE = 'chem2026-v1';
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll([location.pathname || '/'])));
+  self.skipWaiting();
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
+  self.clients.claim();
+});
+self.addEventListener('fetch', e => {
+  if (e.request.url.includes('api.anthropic.com')) return;
+  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).then(res => {
+    const clone = res.clone();
+    caches.open(CACHE).then(c => c.put(e.request, clone));
+    return res;
+  }).catch(() => caches.match(e.request))));
+});
+`;
+
+if('serviceWorker' in navigator){
+  const blob = new Blob([SW_CODE], {type:'application/javascript'});
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl, {scope:'/'}).catch(()=>{});
+}
+
+/* ─── INIT ─── */
+document.addEventListener('DOMContentLoaded', () => {
+  buildSidebar();
+  buildAll();
+});
+</script>
 </body>
 </html>
-```
