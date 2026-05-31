@@ -1,0 +1,523 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chemistry 2026 — Solved Questions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#071018;
+    color:#fff;
+    min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+    background:#0f172a;
+    border-bottom:1px solid #1e293b;
+    padding:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-container{
+    max-width:1300px;
+    margin:auto;
+}
+
+header h1{
+    color:#f59e0b;
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.search-box{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#111827;
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+.search-box::placeholder{
+    color:#94a3b8;
+}
+
+/* MAIN */
+
+.container{
+    max-width:1300px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+/* MODEL */
+
+.model{
+    margin-bottom:45px;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    overflow:hidden;
+    background:#0b1220;
+}
+
+.model-header{
+    background:linear-gradient(90deg,#1e293b,#0f172a);
+    padding:22px;
+    border-bottom:1px solid #1e293b;
+}
+
+.model-header h2{
+    color:#38bdf8;
+    font-size:26px;
+}
+
+/* QUESTION */
+
+.question{
+    padding:25px;
+    border-bottom:1px solid #1e293b;
+}
+
+.question:last-child{
+    border-bottom:none;
+}
+
+.question-number{
+    display:inline-block;
+    background:#f59e0b;
+    color:black;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.question-text{
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:20px;
+    color:#f8fafc;
+}
+
+/* OPTIONS */
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.option{
+    background:#111827;
+    border:1px solid #1e293b;
+    padding:14px;
+    border-radius:10px;
+    color:#cbd5e1;
+    transition:0.3s;
+}
+
+.option.correct{
+    background:#052e16;
+    border:1px solid #22c55e;
+    color:#4ade80;
+    font-weight:600;
+}
+
+/* ANSWER */
+
+.answer-box{
+    background:#052e16;
+    border:1px solid #22c55e;
+    border-radius:12px;
+    padding:18px;
+    margin-top:20px;
+}
+
+.answer-title{
+    color:#4ade80;
+    font-size:18px;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.answer-text{
+    color:#dcfce7;
+    line-height:1.8;
+}
+
+/* EXPLANATION */
+
+.explanation{
+    margin-top:18px;
+    background:#111827;
+    border-radius:12px;
+    padding:18px;
+    border:1px solid #1e293b;
+}
+
+.explanation h4{
+    color:#38bdf8;
+    margin-bottom:12px;
+}
+
+.explanation p{
+    color:#cbd5e1;
+    line-height:1.9;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:24px;
+    }
+
+    .question-text{
+        font-size:16px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-container">
+
+        <h1>⚗ Chemistry 2026 — Complete Solved Questions</h1>
+
+        <input
+            type="text"
+            class="search-box"
+            id="searchInput"
+            placeholder="Search questions..."
+            onkeyup="searchQuestions()"
+        >
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <!-- MODEL 1 -->
+
+    <div class="model">
+
+        <div class="model-header">
+            <h2>📘 Organic Chemistry</h2>
+        </div>
+
+        <!-- QUESTION -->
+
+        <div class="question searchable">
+
+            <div class="question-number">
+                Question 1
+            </div>
+
+            <div class="question-text">
+                What is the number of isomers having molecular formula C4H10 ?
+            </div>
+
+            <div class="options">
+
+                <div class="option">
+                    A) 1
+                </div>
+
+                <div class="option correct">
+                    B) 2
+                </div>
+
+                <div class="option">
+                    C) 3
+                </div>
+
+                <div class="option">
+                    D) 4
+                </div>
+
+            </div>
+
+            <div class="answer-box">
+
+                <div class="answer-title">
+                    ✅ Correct Answer: B) 2
+                </div>
+
+                <div class="answer-text">
+                    C4H10 is butane. It has two structural isomers:
+                    normal butane and isobutane.
+                </div>
+
+            </div>
+
+            <div class="explanation">
+
+                <h4>📖 Explanation</h4>
+
+                <p>
+                    Isomers are compounds that have the same molecular formula
+                    but different structural formulas.
+
+                    Butane (C4H10) has:
+                    <br><br>
+
+                    1. n-butane → straight chain
+                    <br>
+                    2. isobutane → branched chain
+
+                    <br><br>
+
+                    Therefore, the total number of isomers is 2.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- QUESTION -->
+
+        <div class="question searchable">
+
+            <div class="question-number">
+                Question 2
+            </div>
+
+            <div class="question-text">
+                According to Wöhler theory, organic compounds can be prepared in:
+            </div>
+
+            <div class="options">
+
+                <div class="option">
+                    A) Living cells only
+                </div>
+
+                <div class="option correct">
+                    B) Laboratories and living cells
+                </div>
+
+                <div class="option">
+                    C) Houses only
+                </div>
+
+                <div class="option">
+                    D) Plants only
+                </div>
+
+            </div>
+
+            <div class="answer-box">
+
+                <div class="answer-title">
+                    ✅ Correct Answer: B) Laboratories and living cells
+                </div>
+
+                <div class="answer-text">
+                    Wöhler prepared urea in the laboratory proving that organic
+                    compounds can be synthesized artificially.
+                </div>
+
+            </div>
+
+            <div class="explanation">
+
+                <h4>📖 Explanation</h4>
+
+                <p>
+                    Friedrich Wöhler synthesized urea from ammonium cyanate.
+                    This destroyed the old theory stating that organic compounds
+                    can only be produced inside living organisms.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- QUESTION -->
+
+        <div class="question searchable">
+
+            <div class="question-number">
+                Question 3
+            </div>
+
+            <div class="question-text">
+                Which type of bond joins atoms in hydrocarbon molecules?
+            </div>
+
+            <div class="options">
+
+                <div class="option">
+                    A) Ionic
+                </div>
+
+                <div class="option correct">
+                    B) Covalent
+                </div>
+
+                <div class="option">
+                    C) Metallic
+                </div>
+
+                <div class="option">
+                    D) Hydrogen
+                </div>
+
+            </div>
+
+            <div class="answer-box">
+
+                <div class="answer-title">
+                    ✅ Correct Answer: B) Covalent
+                </div>
+
+                <div class="answer-text">
+                    Hydrocarbons contain covalent bonds between carbon and hydrogen atoms.
+                </div>
+
+            </div>
+
+            <div class="explanation">
+
+                <h4>📖 Explanation</h4>
+
+                <p>
+                    Carbon atoms share electrons with hydrogen atoms.
+                    Shared electron pairs form covalent bonds.
+                    Therefore hydrocarbons are covalent compounds.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- QUESTION -->
+
+        <div class="question searchable">
+
+            <div class="question-number">
+                Question 4
+            </div>
+
+            <div class="question-text">
+                Heating potassium cyanate with ammonium chloride produces:
+            </div>
+
+            <div class="options">
+
+                <div class="option">
+                    A) Methane amide
+                </div>
+
+                <div class="option">
+                    B) Ethylamine
+                </div>
+
+                <div class="option correct">
+                    C) Urea
+                </div>
+
+                <div class="option">
+                    D) Acetamide
+                </div>
+
+            </div>
+
+            <div class="answer-box">
+
+                <div class="answer-title">
+                    ✅ Correct Answer: C) Urea
+                </div>
+
+                <div class="answer-text">
+                    The reaction forms ammonium cyanate first which rearranges into urea.
+                </div>
+
+            </div>
+
+            <div class="explanation">
+
+                <h4>📖 Explanation</h4>
+
+                <p>
+                    Potassium cyanate reacts with ammonium chloride forming
+                    ammonium cyanate.
+
+                    <br><br>
+
+                    NH4OCN → CO(NH2)2
+
+                    <br><br>
+
+                    This is the famous Wöhler synthesis reaction.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function searchQuestions(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let questions =
+        document.querySelectorAll(".searchable");
+
+    questions.forEach(q=>{
+
+        if(q.innerText.toLowerCase().includes(input)){
+            q.style.display="block";
+        }
+        else{
+            q.style.display="none";
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
+```
